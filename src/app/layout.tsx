@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
+import { Navbar, Footer } from "@/components";
+import CTASection from "@/components/sections/CTASection";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} content-grid font-satoshi`}>
+        <NextTopLoader color="#000" easing="easeInOut" />
+        <Navbar />
+        <main className="full-width content-grid mt-[3.5rem] md:mt-[4rem] lg:mt-[6rem]">
+          {children}
+        </main>
+        <CTASection />
+        <Footer />
+      </body>
     </html>
   );
 }

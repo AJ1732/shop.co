@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Candal
+- Font Author: Copyright (c) 2011 by vernon adams. All rights reserved.
+- Font Source: https://fonts.gstatic.com/s/candal/v15/XoHn2YH6T7-t_8cNAR4Jt9Yxlw.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

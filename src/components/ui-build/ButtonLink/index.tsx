@@ -1,0 +1,37 @@
+import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+
+export default function ButtonDemo({
+  label,
+  link,
+  disabled,
+  className,
+  onClick,
+}: ButtonLinkProps) {
+  if (link) {
+    return (
+      <Link
+        href={link}
+        className={cn(
+          buttonVariants({ className }),
+          "rounded-full transition-all duration-300 active:scale-[0.99]",
+        )}
+      >
+        {label}
+      </Link>
+    );
+  }
+  return (
+    <Button
+      onClick={onClick}
+      disabled={disabled}
+      className={cn(
+        "rounded-full px-6 py-3 transition-all duration-300 active:scale-[0.99]",
+        className,
+      )}
+    >
+      {label}
+    </Button>
+  );
+}
