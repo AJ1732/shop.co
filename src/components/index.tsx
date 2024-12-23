@@ -3,7 +3,7 @@ export { default as Navbar } from "./layout/Navbar";
 export { default as Footer } from "./layout/Footer";
 
 // SECTION COMPONENTS
-export { default as HeroSection } from "./sections/HeroSection";
+export { default as HeroSection } from "./sections/Homepage/HeroSection";
 export { default as CTASection } from "./sections/CTASection";
 
 // UI COMPONENTS
