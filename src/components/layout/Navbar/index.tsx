@@ -93,7 +93,7 @@ const Navbar = () => {
           className="full-width absolute inset-0 size-full bg-shade-100/50 backdrop-blur-sm"
         />
 
-        <nav className="z-10 h-40 bg-black px-8 py-6 text-white">
+        <nav className="z-10 h-fit rounded-2xl bg-black px-8 py-10 text-white">
           <ul className="flex flex-col items-start justify-center gap-6">
             {navlinks.map(({ name, link }) => (
               <li key={name} className="text-xl">
