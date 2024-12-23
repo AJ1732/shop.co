@@ -1,14 +1,16 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { InputField } from "@/components";
+
 import {
   AlignLeft,
   CircleUserRound,
   SearchIcon,
   ShoppingCart,
 } from "lucide-react";
+import { NavLinks } from "@/types/navlink";
+import { InputField } from "@/components";
+import { cn } from "@/lib/utils";
 
 const navlinks: NavLinks[] = [
   {
