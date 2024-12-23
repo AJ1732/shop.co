@@ -1,5 +1,5 @@
-import { ButtonLink, InputField } from "@/components";
 import { Mail } from "lucide-react";
+import { ButtonLink, InputField } from "@/components";
 
 const CTASection = () => {
   return (

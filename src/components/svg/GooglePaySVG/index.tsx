@@ -1,4 +1,6 @@
-const GooglePaySVG: React.FC<SVGProps> = ({ className }) => {
+import { SvgProps } from "@/types/svgs";
+
+const GooglePaySVG: React.FC<SvgProps> = ({ className }) => {
   return (
     <svg
       width="66"

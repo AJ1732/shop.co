@@ -1,4 +1,6 @@
-const ApplePaySVG: React.FC<SVGProps> = ({ className }) => {
+import { SvgProps } from "@/types/svgs";
+
+const ApplePaySVG: React.FC<SvgProps> = ({ className }) => {
   return (
     <svg
       width="66"

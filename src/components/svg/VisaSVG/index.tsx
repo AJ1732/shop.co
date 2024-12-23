@@ -1,4 +1,6 @@
-const VisaSVG: React.FC<SVGProps> = ({ className }) => {
+import { SvgProps } from "@/types/svgs";
+
+const VisaSVG: React.FC<SvgProps> = ({ className }) => {
   return (
     <svg
       width="66"

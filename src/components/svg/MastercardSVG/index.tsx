@@ -1,4 +1,6 @@
-const MastercardSVG: React.FC<SVGProps> = ({ className }) => {
+import { SvgProps } from "@/types/svgs";
+
+const MastercardSVG: React.FC<SvgProps> = ({ className }) => {
   return (
     <svg
       width="66"

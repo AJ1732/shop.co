@@ -1,4 +1,4 @@
-export type SVGProps = {
+export type SvgProps = {
   className?: string;
   fillColor?: string;
   strokeColor?: string;
