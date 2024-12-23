@@ -7,13 +7,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Rsa Stores",
+  title: "shop.co",
   description: "Website displaying posts from a free and reliable fake API",
   openGraph: {
     title: "Rsa Stores",
     type: "website",
     locale: "en_US",
-    siteName: "Rsa Stores",
+    siteName: "shop.co",
     url: "https://1732-rsa-stores.vercel.app/",
     description: "Website displaying posts from a free and reliable fake API",
     images:
