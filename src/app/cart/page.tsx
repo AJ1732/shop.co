@@ -1,16 +1,16 @@
-import { CartCard } from "@/components";
+import { OrderSummaryCard } from "@/components";
+import { CartSection } from "@/components/sections/CartPage";
 
 const CartPage = () => {
   return (
-    <section className="grid grid-cols-[44rem_32rem] gap-5 space-y-5 pb-20 pt-6 sm:space-y-6">
-      <h2 className="col-span-2 font-integral text-[2rem] md:text-4xl lg:text-[3rem]">
+    <section className="grid gap-5 space-y-5 pb-20 pt-6 sm:space-y-6 lg:grid-cols-[1fr_40%]">
+      <h2 className="font-integral text-[2rem] md:text-4xl lg:col-span-2 lg:text-[3rem]">
         Your Cart
       </h2>
 
-      <div className="divide-y-2 rounded-[1.25rem] border border-black/10 px-4 lg:px-6">
-        <CartCard title="Gradient Graphic T-shirt" />
-        <CartCard title="Gradient Graphic T-shirt" />
-      </div>
+      <CartSection />
+
+      <OrderSummaryCard />
     </section>
   );
 };

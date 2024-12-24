@@ -11,7 +11,7 @@ import { formatCurrency } from "@/utils";
 
 const CartCard: React.FC<CartCardProps> = ({ title }) => {
   return (
-    <Card className="flex w-full max-w-[41.5rem] items-center justify-start gap-4 rounded-none border-0 py-4 shadow-none md:py-6">
+    <Card className="flex w-full items-center justify-start gap-4 rounded-none border-0 py-4 shadow-none md:py-6">
       <figure className="aspect-square min-w-[6.1875rem] rounded-lg bg-[#F0EEED] lg:min-w-[7.75rem]"></figure>
 
       <div className="flex size-full items-center justify-between">
@@ -20,7 +20,7 @@ const CartCard: React.FC<CartCardProps> = ({ title }) => {
             <CardTitle className="space-y-1 text-base capitalize md:text-xl">
               {title}
             </CardTitle>
-            <CardDescription className="text-xs text-black md:text-sm">
+            <CardDescription className="text-xs text-black md:text-sm [&>span]:block">
               <span>
                 Category: <span className="text-black/60">Clothes</span>
               </span>
