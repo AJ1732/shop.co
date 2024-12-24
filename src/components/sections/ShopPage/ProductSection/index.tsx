@@ -1,5 +1,5 @@
 import { ProductCard } from "@/components";
-import { FilterDrawer } from "../components";
+import { FilterDrawer, ProductPagination } from "../components";
 
 const ProductSection = () => {
   return (
@@ -22,9 +22,7 @@ const ProductSection = () => {
       ))}
 
       {/* PAGINATION */}
-      <div className="col-span-2 size-full border-t border-black/10 py-5 text-center text-black sm:col-span-3">
-        Pagination
-      </div>
+      <ProductPagination className="col-span-2 size-full border-t border-black/10 py-5 text-center text-black sm:col-span-3" />
     </div>
   );
 };
