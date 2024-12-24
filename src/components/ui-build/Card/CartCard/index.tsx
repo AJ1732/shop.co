@@ -21,12 +21,12 @@ const CartCard: React.FC<CartCardProps> = ({ title }) => {
               {title}
             </CardTitle>
             <CardDescription className="text-xs text-black md:text-sm">
-              <div>
+              <span>
                 Category: <span className="text-black/60">Clothes</span>
-              </div>
-              <div>
+              </span>
+              <span>
                 Category: <span className="text-black/60">Clothes</span>
-              </div>
+              </span>
             </CardDescription>
           </CardHeader>
 
