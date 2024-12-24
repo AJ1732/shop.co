@@ -1,11 +1,12 @@
-import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { ButtonLinkProps } from "@/types/button";
+import { cn } from "@/lib/utils";
 
 export default function ButtonDemo({
-  label,
   link,
   disabled,
+  children,
   className,
   onClick,
 }: ButtonLinkProps) {
@@ -18,7 +19,7 @@ export default function ButtonDemo({
           "rounded-full transition-all duration-300 active:scale-[0.99]",
         )}
       >
-        {label}
+        {children}
       </Link>
     );
   }
@@ -31,7 +32,7 @@ export default function ButtonDemo({
         className,
       )}
     >
-      {label}
+      {children}
     </Button>
   );
 }

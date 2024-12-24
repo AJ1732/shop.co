@@ -8,7 +8,7 @@ const CTASection = () => {
         STAY UPTO DATE ABOUT OUR LATEST OFFERS
       </h2>
 
-      <div className="max-lg:mx-auto flex w-full flex-col justify-center gap-3 text-white lg:max-w-[22rem]">
+      <div className="flex w-full flex-col justify-center gap-3 text-white max-lg:mx-auto lg:max-w-[22rem]">
         <InputField
           startIcon={<Mail />}
           placeholder="Enter your email address"
@@ -16,10 +16,9 @@ const CTASection = () => {
             className: "stroke-black/40",
           }}
         />
-        <ButtonLink
-          label="Subscribe to Newsletter"
-          className="w-full bg-neutral-100 py-6 text-black hover:bg-shade-200"
-        />
+        <ButtonLink className="w-full bg-neutral-100 py-6 text-black hover:bg-shade-200">
+          Subscribe to Newsletter
+        </ButtonLink>
       </div>
     </section>
   );

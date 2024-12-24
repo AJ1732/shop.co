@@ -1,5 +1,5 @@
 export type ButtonLinkProps = {
-  label: string | React.ReactNode;
+  children: React.ReactNode;
   link?: string;
   disabled?: boolean;
   className?: string;
