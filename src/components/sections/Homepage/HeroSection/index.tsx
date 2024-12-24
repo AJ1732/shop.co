@@ -31,11 +31,9 @@ const HeroSection = () => {
               of style.
             </p>
 
-            <ButtonLink
-              label="Shop Now"
-              link="/shop"
-              className="w-full px-14 py-4 md:w-fit"
-            />
+            <ButtonLink link="/shop" className="w-full px-14 py-4 md:w-fit">
+              Shop Now
+            </ButtonLink>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 space-x-2 md:justify-between">

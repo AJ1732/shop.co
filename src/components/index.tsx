@@ -9,3 +9,6 @@ export { default as CTASection } from "./sections/CTASection";
 export { default as ButtonLink } from "./ui-build/ButtonLink";
 export { default as InputField } from "./ui-build/Input";
 export { default as ErrorPage } from "./ui-build/ErrorPage";
+
+// CARD COMPONENTS
+export { default as ProductCard } from "./ui-build/Card/ProductCard";
