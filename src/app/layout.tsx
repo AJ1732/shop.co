@@ -38,7 +38,7 @@ export default function RootLayout({
         <NextTopLoader color="#000" easing="easeInOut" />
         <Navbar />
         <ReduxProvider>
-          <main className="full-width content-grid mt-[3.5rem] md:mt-[4rem] lg:mt-[6rem]">
+          <main className="full-width content-grid mt-[3.5rem] min-h-[calc(100dvh-10rem)] md:mt-[4rem] lg:mt-[6rem]">
             {children}
           </main>
         </ReduxProvider>
