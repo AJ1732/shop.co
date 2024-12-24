@@ -1,5 +1,5 @@
 import { SlidersHorizontal } from "lucide-react";
-import { FilterTab } from "./components";
+import { FilterTab } from "../components";
 
 const FilterSection = () => {
   return (
