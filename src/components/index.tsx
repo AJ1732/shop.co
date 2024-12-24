@@ -6,9 +6,10 @@ export { default as Footer } from "./layout/Footer";
 export { default as CTASection } from "./sections/CTASection";
 
 // UI COMPONENTS
+export { default as BreadCrumbNav } from "./ui-build/BreadCrumbNav";
 export { default as ButtonLink } from "./ui-build/ButtonLink";
-export { default as InputField } from "./ui-build/Input";
 export { default as ErrorPage } from "./ui-build/ErrorPage";
+export { default as InputField } from "./ui-build/InputField";
 
 // CARD COMPONENTS
 export { default as CartCard } from "./ui-build/Card/CartCard";

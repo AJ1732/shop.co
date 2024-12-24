@@ -11,7 +11,7 @@ export interface InputProps
   iconProps?: LucideProps;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const InputField = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, startIcon, endIcon, iconProps = {}, ...props }, ref) => {
     const [show, setShow] = React.useState(false);
     const { className: iconClassName, ...iconRest } = iconProps;
@@ -87,6 +87,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   },
 );
 
-Input.displayName = "Input";
+InputField.displayName = "Input";
 
-export default Input;
+export default InputField;

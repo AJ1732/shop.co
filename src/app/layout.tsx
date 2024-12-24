@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { CTASection, Navbar, Footer } from "@/components";
+import ReduxProvider from "@/provider";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,9 +37,11 @@ export default function RootLayout({
       <body className={`${inter.className} content-grid font-satoshi`}>
         <NextTopLoader color="#000" easing="easeInOut" />
         <Navbar />
-        <main className="full-width content-grid mt-[3.5rem] md:mt-[4rem] lg:mt-[6rem]">
-          {children}
-        </main>
+        <ReduxProvider>
+          <main className="full-width content-grid mt-[3.5rem] md:mt-[4rem] lg:mt-[6rem]">
+            {children}
+          </main>
+        </ReduxProvider>
         <CTASection />
         <Footer />
       </body>
