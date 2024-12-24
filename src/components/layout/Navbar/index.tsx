@@ -28,7 +28,7 @@ const Navbar = () => {
 
   return (
     <header className="content-grid fixed z-50 w-full bg-white">
-      <nav className="flex items-center justify-between gap-4 py-3 md:py-4 lg:py-6">
+      <nav className="flex items-center justify-between gap-4 border-b border-black/10 py-3 md:py-4 lg:py-6">
         <div className="flex items-center justify-between gap-8">
           {/* MOBILE TOGGLE */}
           <button
@@ -76,7 +76,11 @@ const Navbar = () => {
           <div className="lg:hidden">
             <SearchIcon className="size-6" />
           </div>
-          <ShoppingCart />
+
+          <Link href={"/cart"}>
+            <ShoppingCart />
+          </Link>
+
           <CircleUserRound />
         </div>
       </nav>
