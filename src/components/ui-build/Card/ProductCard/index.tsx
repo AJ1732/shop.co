@@ -13,14 +13,9 @@ import { cn } from "@/lib/utils";
 
 const ProductCard: React.FC<ProductCardProps> = async ({ id, className }) => {
   return (
-    <Card
-      className={cn(
-        "max-w-[10.75rem] border-0 shadow-none *:p-0 md:max-w-[18.5rem]",
-        className,
-      )}
-    >
+    <Card className={cn("w-full border-0 shadow-none *:p-0", className)}>
       <Link href={`/item/${id}`} className="block">
-        <figure className="relative mb-4 h-[10.875rem] w-[10.75rem] overflow-hidden rounded-[1.25rem] bg-[#F0EEED] md:h-[18.625rem] md:w-[18.4375rem]">
+        <figure className="bg-shade-300 relative mb-4 aspect-[86/87] overflow-hidden rounded-[1.25rem]">
           <Image
             fill
             src={1 && "https://i.imgur.com/QkIa5tT.jpeg"}
@@ -34,11 +29,13 @@ const ProductCard: React.FC<ProductCardProps> = async ({ id, className }) => {
       <CardHeader>
         <Link href={`/item/${id}`} className="block">
           <CardTitle className="line-clamp-1 text-base md:text-xl">
-            {""}
+            Lorem ipsum
           </CardTitle>
         </Link>
 
-        <CardDescription className="line-clamp-2">{""}</CardDescription>
+        <CardDescription className="line-clamp-2">
+          dolor sit amet consectetur adipisicing elit. Accusantium, vitae?
+        </CardDescription>
       </CardHeader>
 
       <CardContent className="mt-4 text-xl font-bold md:text-2xl">

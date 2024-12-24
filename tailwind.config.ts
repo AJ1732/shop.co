@@ -22,6 +22,7 @@ const config = {
         shade: {
           100: "#F2F0F1",
           200: "#F0F0F0",
+          300: "#F0EEED",
         },
         warn: "#FF3333",
       },
