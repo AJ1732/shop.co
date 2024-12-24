@@ -21,12 +21,12 @@ const CartCard: React.FC<CartCardProps> = ({ title }) => {
               {title}
             </CardTitle>
             <CardDescription className="text-xs text-black md:text-sm">
-              <p>
+              <div>
                 Category: <span className="text-black/60">Clothes</span>
-              </p>
-              <p>
+              </div>
+              <div>
                 Category: <span className="text-black/60">Clothes</span>
-              </p>
+              </div>
             </CardDescription>
           </CardHeader>
 
@@ -35,7 +35,7 @@ const CartCard: React.FC<CartCardProps> = ({ title }) => {
           </CardContent>
         </div>
 
-        <div className="flex h-full flex-col items-end justify-between">
+        <div className="flex h-full flex-col items-end justify-between gap-8">
           <div className="rounded-full bg-red-50 p-2">
             <Trash2 className="size-5 stroke-red-500 lg:size-6" />
           </div>
