@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { NavLinks } from "@/types/navlink";
 import { InputField } from "@/components";
+import { Navigation } from "./components";
 import { cn } from "@/lib/utils";
 
 const navlinks: NavLinks[] = [
@@ -19,7 +20,7 @@ const navlinks: NavLinks[] = [
   },
   {
     name: "categories",
-    link: ["/category/1"],
+    link: ["/category/1", "/category/2"],
   },
 ];
 
@@ -46,27 +47,13 @@ const Navbar = () => {
           </Link>
 
           {/* DESKTOP NAVIGATION */}
-          <ul className="flex items-center justify-center gap-6 max-lg:hidden">
-            {navlinks.map(({ name, link }) => (
-              <li key={name} className="text-xl">
-                {Array.isArray(link) ? (
-                  <div className="relative">
-                    <div className="cursor-pointer">{name}</div>
-                  </div>
-                ) : (
-                  <Link href={link} className="block">
-                    {name}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
+          <Navigation className="max-lg:hidden" />
         </div>
 
         <InputField
           startIcon={<SearchIcon />}
           placeholder="Search for products..."
-          className="min-w-[36rem] bg-shade-200 max-lg:hidden"
+          className="ml-auto min-w-[36rem] bg-shade-200 max-lg:hidden"
           iconProps={{
             className: "max-lg:hidden stroke-black/40",
           }}
@@ -98,19 +85,25 @@ const Navbar = () => {
         />
 
         <nav className="z-10 h-fit rounded-2xl bg-black px-8 py-10 text-white">
-          <ul className="flex flex-col items-start justify-center gap-6">
-            {navlinks.map(({ name, link }) => (
-              <li key={name} className="text-xl">
-                {Array.isArray(link) ? (
-                  <div>{name}</div>
-                ) : (
-                  <Link href={link} className="block">
-                    {name}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
+          <Navigation />
+          {/* <ul className="flex flex-col items-start justify-center gap-6">
+            {navlinks.map(({ name, link }) => {
+              return (
+                <li key={name} className="text-xl">
+                  {Array.isArray(link) ? (
+                    <div className="flex items-center justify-center gap-1">
+                      <span>{name}</span>
+                      <ChevronDown className="mt-1 stroke-shade-200" />
+                    </div>
+                  ) : (
+                    <Link href={link} className="block">
+                      {name}
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ul> */}
         </nav>
       </div>
     </header>
