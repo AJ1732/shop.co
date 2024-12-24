@@ -16,77 +16,77 @@ import {
 
 const components: {
   title: string;
-  href: string;
+  // href: string;
   description: string;
   categories?: { name: string; href: string }[];
 }[] = [
   {
     title: "Men's Fashion",
-    href: "/category/mens",
+    // href: "/categories/mens",
     description:
       "Discover trendy shirts, shoes, and watches for the modern man.",
     categories: [
-      { name: "Shirts", href: "/category/mens-shirts" },
-      { name: "Shoes", href: "/category/mens-shoes" },
-      { name: "Watches", href: "/category/mens-watches" },
+      { name: "Shirts", href: "/categories/mens-shirts" },
+      { name: "Shoes", href: "/categories/mens-shoes" },
+      { name: "Watches", href: "/categories/mens-watches" },
     ],
   },
   {
     title: "Women's Fashion",
-    href: "/category/womens",
+    // href: "/categories/womens",
     description:
       "Explore elegant dresses, bags, jewelry, and accessories for women.",
     categories: [
-      { name: "Dresses", href: "/category/womens-dresses" },
-      { name: "Bags", href: "/category/womens-bags" },
-      { name: "Jewelry", href: "/category/womens-jewellery" },
-      { name: "Shoes", href: "/category/womens-shoes" },
-      { name: "Watches", href: "/category/womens-watches" },
-      { name: "Tops", href: "/category/tops" },
+      { name: "Dresses", href: "/categories/womens-dresses" },
+      { name: "Bags", href: "/categories/womens-bags" },
+      { name: "Jewelry", href: "/categories/womens-jewellery" },
+      { name: "Shoes", href: "/categories/womens-shoes" },
+      { name: "Watches", href: "/categories/womens-watches" },
+      { name: "Tops", href: "/categories/tops" },
     ],
   },
   {
     title: "Electronics",
-    href: "/category/electronics",
+    // href: "/categories/electronics",
     description:
       "Browse latest smartphones, laptops, tablets, and accessories.",
     categories: [
-      { name: "Smartphones", href: "/category/smartphones" },
-      { name: "Laptops", href: "/category/laptops" },
-      { name: "Tablets", href: "/category/tablets" },
-      { name: "Mobile Accessories", href: "/category/mobile-accessories" },
+      { name: "Smartphones", href: "/categories/smartphones" },
+      { name: "Laptops", href: "/categories/laptops" },
+      { name: "Tablets", href: "/categories/tablets" },
+      { name: "Mobile Accessories", href: "/categories/mobile-accessories" },
     ],
   },
   {
     title: "Beauty & Care",
-    href: "/category/beauty",
+    // href: "/categories/beauty",
     description: "Find skincare products, fragrances, and beauty essentials.",
     categories: [
-      { name: "Skin Care", href: "/category/skin-care" },
-      { name: "Fragrances", href: "/category/fragrances" },
+      { name: "Skin Care", href: "/categories/skin-care" },
+      { name: "Fragrances", href: "/categories/fragrances" },
     ],
   },
   {
     title: "Home & Living",
-    href: "/category/home",
+    // href: "/categories/home",
     description:
       "Shop furniture, kitchen accessories, and home decoration items.",
     categories: [
-      { name: "Furniture", href: "/category/furniture" },
-      { name: "Kitchen Accessories", href: "/category/kitchen-accessories" },
-      { name: "Home Decoration", href: "/category/home-decoration" },
-      { name: "Groceries", href: "/category/groceries" },
+      { name: "Furniture", href: "/categories/furniture" },
+      { name: "Kitchen Accessories", href: "/categories/kitchen-accessories" },
+      { name: "Home Decoration", href: "/categories/home-decoration" },
+      { name: "Groceries", href: "/categories/groceries" },
     ],
   },
   {
     title: "Sports & Automotive",
-    href: "/category/sports-automotive",
+    // href: "/categories/sports-automotive",
     description: "Explore sports gear, vehicles, and automotive accessories.",
     categories: [
-      { name: "Sports Accessories", href: "/category/sports-accessories" },
-      { name: "Sunglasses", href: "/category/sunglasses" },
-      { name: "Motorcycle", href: "/category/motorcycle" },
-      { name: "Vehicle", href: "/category/vehicle" },
+      { name: "Sports Accessories", href: "/categories/sports-accessories" },
+      { name: "Sunglasses", href: "/categories/sunglasses" },
+      { name: "Motorcycle", href: "/categories/motorcycle" },
+      { name: "Vehicle", href: "/categories/vehicle" },
     ],
   },
 ];
@@ -115,7 +115,7 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
                 <ListItem
                   key={component.title}
                   title={component.title}
-                  href={component.href}
+                  // href={component.href}
                   categories={component.categories}
                 >
                   {component.description}

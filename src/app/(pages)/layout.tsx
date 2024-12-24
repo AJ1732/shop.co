@@ -9,11 +9,10 @@ const PagesLayout = ({
   children: React.ReactNode;
 }>) => {
   const pathname = usePathname();
-  const currentRoute = pathname.split("/").filter(Boolean).pop() || "Home";
 
   return (
     <div>
-      <BreadCrumbNav currentLink={pathname} currentRoute={currentRoute} />
+      <BreadCrumbNav currentLink={pathname} />
       {children}
     </div>
   );
