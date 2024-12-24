@@ -14,41 +14,80 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const components: { title: string; href: string; description: string }[] = [
+const components: {
+  title: string;
+  href: string;
+  description: string;
+  categories?: { name: string; href: string }[];
+}[] = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
+    title: "Men's Fashion",
+    href: "/category/mens",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "Discover trendy shirts, shoes, and watches for the modern man.",
+    categories: [
+      { name: "Shirts", href: "/category/mens-shirts" },
+      { name: "Shoes", href: "/category/mens-shoes" },
+      { name: "Watches", href: "/category/mens-watches" },
+    ],
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    title: "Women's Fashion",
+    href: "/category/womens",
     description:
-      "For sighted users to preview content available behind a link.",
+      "Explore elegant dresses, bags, jewelry, and accessories for women.",
+    categories: [
+      { name: "Dresses", href: "/category/womens-dresses" },
+      { name: "Bags", href: "/category/womens-bags" },
+      { name: "Jewelry", href: "/category/womens-jewellery" },
+      { name: "Shoes", href: "/category/womens-shoes" },
+      { name: "Watches", href: "/category/womens-watches" },
+      { name: "Tops", href: "/category/tops" },
+    ],
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
+    title: "Electronics",
+    href: "/category/electronics",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "Browse latest smartphones, laptops, tablets, and accessories.",
+    categories: [
+      { name: "Smartphones", href: "/category/smartphones" },
+      { name: "Laptops", href: "/category/laptops" },
+      { name: "Tablets", href: "/category/tablets" },
+      { name: "Mobile Accessories", href: "/category/mobile-accessories" },
+    ],
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    title: "Beauty & Care",
+    href: "/category/beauty",
+    description: "Find skincare products, fragrances, and beauty essentials.",
+    categories: [
+      { name: "Skin Care", href: "/category/skin-care" },
+      { name: "Fragrances", href: "/category/fragrances" },
+    ],
   },
   {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
+    title: "Home & Living",
+    href: "/category/home",
     description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      "Shop furniture, kitchen accessories, and home decoration items.",
+    categories: [
+      { name: "Furniture", href: "/category/furniture" },
+      { name: "Kitchen Accessories", href: "/category/kitchen-accessories" },
+      { name: "Home Decoration", href: "/category/home-decoration" },
+      { name: "Groceries", href: "/category/groceries" },
+    ],
   },
   {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+    title: "Sports & Automotive",
+    href: "/category/sports-automotive",
+    description: "Explore sports gear, vehicles, and automotive accessories.",
+    categories: [
+      { name: "Sports Accessories", href: "/category/sports-accessories" },
+      { name: "Sunglasses", href: "/category/sunglasses" },
+      { name: "Motorcycle", href: "/category/motorcycle" },
+      { name: "Vehicle", href: "/category/vehicle" },
+    ],
   },
 ];
 
@@ -77,6 +116,7 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
                   key={component.title}
                   title={component.title}
                   href={component.href}
+                  categories={component.categories}
                 >
                   {component.description}
                 </ListItem>
@@ -91,8 +131,10 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<"a"> & {
+    categories?: { name: string; href: string }[];
+  }
+>(({ className, title, children, categories, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
@@ -108,6 +150,20 @@ const ListItem = React.forwardRef<
           <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
             {children}
           </p>
+
+          {categories && (
+            <div className="mt-2 flex flex-wrap gap-x-2">
+              {categories.map((category) => (
+                <Link
+                  key={category.href}
+                  href={category.href}
+                  className="text-muted-foreground hover:text-primary border-r border-neutral-800 pr-2 text-sm uppercase italic last:border-none hover:underline"
+                >
+                  {category.name}
+                </Link>
+              ))}
+            </div>
+          )}
         </a>
       </NavigationMenuLink>
     </li>
