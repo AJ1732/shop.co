@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 const ProductCard: React.FC<ProductCardProps> = async ({ id, className }) => {
   return (
     <Card className={cn("w-full border-0 shadow-none *:p-0", className)}>
-      <Link href={`/item/${id}`} className="block">
+      <Link href={`/shop/${id}`} className="block">
         <figure className="bg-shade-300 relative mb-4 aspect-[86/87] overflow-hidden rounded-[1.25rem]">
           <Image
             fill
