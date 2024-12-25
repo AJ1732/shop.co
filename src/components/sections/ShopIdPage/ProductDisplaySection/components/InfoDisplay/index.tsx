@@ -1,6 +1,6 @@
 import { Minus, Plus } from "lucide-react";
-import { PriceDisplay, StarRating } from "./components";
-import { ButtonLink } from "@/components";
+import { ButtonLink, StarRating } from "@/components";
+import { PriceDisplay } from "./components";
 
 interface InfoDisplayProps {
   title: string;
