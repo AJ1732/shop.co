@@ -1,15 +1,3 @@
-// import { apiClient } from "@/lib/axios";
-
-// export async function getProducts() {
-//   try {
-//     const response = await apiClient.get("/products");
-//     return response.data;
-//   } catch (error) {
-//     throw new Error('Failed to fetch products');
-//   }
-// }
-
-import { apiClient } from '@/lib/axios';
 import { Product } from '@/types/products';
 
 interface ProductsResponse {
@@ -21,14 +9,17 @@ interface ProductsResponse {
 
 export const productService = {
   async getProducts(): Promise<ProductsResponse> {
-    try {
-      const { data } = await apiClient.get<ProductsResponse>('/products');
-      return data;
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(`Failed to fetch products: ${error.message}`);
-      }
+    const response = await fetch('https://dummyjson.com/products', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
       throw new Error('Failed to fetch products');
     }
+
+    return response.json();
   },
 };
