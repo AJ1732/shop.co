@@ -34,18 +34,25 @@ export const useProducts = (sortOptions?: {
 export const useProductById = (params: {
   id: number | string;
   select?: string[];
-}) => {
+}): {
+  product: Product | undefined;
+  isLoading: boolean;
+  isError: boolean;
+  error: string | null;
+} => {
   const dispatch = useAppDispatch();
   const { items, status, error } = useAppSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(
-      fetchProductById({
-        id: params.id,
-        select: params.select,
-      }),
-    );
-  }, [dispatch, params.id, params.select]);
+    if (status === "idle" || !items.length) {
+      dispatch(
+        fetchProductById({
+          id: params.id,
+          select: params.select,
+        }),
+      );
+    }
+  }, [params.id, params.select]);
 
   return {
     product: items[0],

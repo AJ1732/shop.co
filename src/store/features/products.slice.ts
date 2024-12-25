@@ -74,6 +74,18 @@ const productsSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message || "Failed to fetch products";
       })
+      // FETCH PRODUCT BY ID
+      .addCase(fetchProductById.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.items = [action.payload]; 
+      })
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Failed to fetch product";
+      })
       // PAGINATED PRODUCTS
       .addCase(fetchPaginatedProducts.pending, (state) => {
         state.status = "loading";
