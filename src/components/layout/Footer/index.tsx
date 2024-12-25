@@ -75,7 +75,7 @@ const Footer = () => {
       <div className="flex items-center justify-between gap-4 py-6 max-lg:flex-col">
         <p>Shop.co © 2000-2023, All Rights Reserved</p>
 
-        <div className="flex gap-3">
+        <div className="flex flex-wrap justify-center gap-3">
           <VisaSVG />
           <MastercardSVG />
           <PayPalSVG />
