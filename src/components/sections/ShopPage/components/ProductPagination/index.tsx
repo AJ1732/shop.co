@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -7,32 +10,151 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { cn } from "@/lib/utils";
 
-const ProductPagination = ({ className }: { className?: string }) => {
+interface ProductPaginationProps {
+  total: number;
+  itemsPerPage?: number;
+  onPageChange?: (page: number) => void;
+  className?: string;
+}
+
+const ProductPagination = ({
+  total,
+  itemsPerPage = 10,
+  onPageChange,
+  className,
+}: ProductPaginationProps) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(total / itemsPerPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    onPageChange?.(page);
+  };
+
+  const renderPageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(
+          <PaginationItem key={i}>
+            <PaginationLink
+              href={`?page=${i}`}
+              isActive={currentPage === i}
+              onClick={(e) => {
+                e.preventDefault();
+                handlePageChange(i);
+              }}
+            >
+              {i}
+            </PaginationLink>
+          </PaginationItem>,
+        );
+      }
+    } else {
+      // FIRST PAGE
+      pages.push(
+        <PaginationItem key={1}>
+          <PaginationLink
+            href="?page=1"
+            isActive={currentPage === 1}
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageChange(1);
+            }}
+          >
+            1
+          </PaginationLink>
+        </PaginationItem>,
+      );
+
+      // ADD ELLIPSIS IF NEEDED
+      if (currentPage > 3) {
+        pages.push(
+          <PaginationItem key="ellipsis1">
+            <PaginationEllipsis />
+          </PaginationItem>,
+        );
+      }
+
+      // CURRENT PAGE AND SURROUNDING PAGES
+      for (
+        let i = Math.max(2, currentPage - 1);
+        i <= Math.min(totalPages - 1, currentPage + 1);
+        i++
+      ) {
+        pages.push(
+          <PaginationItem key={i}>
+            <PaginationLink
+              href={`?page=${i}`}
+              isActive={currentPage === i}
+              onClick={(e) => {
+                e.preventDefault();
+                handlePageChange(i);
+              }}
+            >
+              {i}
+            </PaginationLink>
+          </PaginationItem>,
+        );
+      }
+
+      // ADD ELLIPSIS IS NEEDED
+      if (currentPage < totalPages - 2) {
+        pages.push(
+          <PaginationItem key="ellipsis2">
+            <PaginationEllipsis />
+          </PaginationItem>,
+        );
+      }
+
+      // LAST PAGE
+      pages.push(
+        <PaginationItem key={totalPages}>
+          <PaginationLink
+            href={`?page=${totalPages}`}
+            isActive={currentPage === totalPages}
+            onClick={(e) => {
+              e.preventDefault();
+              handlePageChange(totalPages);
+            }}
+          >
+            {totalPages}
+          </PaginationLink>
+        </PaginationItem>,
+      );
+    }
+
+    return pages;
+  };
+
   return (
-    <Pagination className={cn("w-full", className)}>
-      <PaginationContent className="flex w-full justify-between">
+    <Pagination className={className}>
+      <PaginationContent className="flex w-full items-center justify-between">
         <PaginationItem>
-          <PaginationPrevious href="#" />
+          <PaginationPrevious
+            href={`?page=${currentPage - 1}`}
+            onClick={(e) => {
+              e.preventDefault();
+              if (currentPage > 1) handlePageChange(currentPage - 1);
+            }}
+          />
         </PaginationItem>
 
-        <div className="flex gap-2">
-          {[1, 2, 3].map((item) => (
-            <PaginationItem key={item}>
-              <PaginationLink href="#" isActive={item === 1}>
-                {item}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
+        <div className="flex items-center justify-center gap-2">
+          {renderPageNumbers()}
         </div>
 
         <PaginationItem>
-          <PaginationNext href="#" />
+          <PaginationNext
+            href={`?page=${currentPage + 1}`}
+            onClick={(e) => {
+              e.preventDefault();
+              if (currentPage < totalPages) handlePageChange(currentPage + 1);
+            }}
+          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

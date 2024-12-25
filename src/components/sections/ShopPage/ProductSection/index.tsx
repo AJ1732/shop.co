@@ -1,29 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import { ProductCard } from "@/components";
 import { FilterDrawer, ProductPagination } from "../components";
-import { useProducts } from "@/hooks/use-products";
+import { usePaginatedProducts } from "@/hooks/use-products";
 
 const ProductSection = () => {
-  const { products, isError, isLoading } = useProducts();
+  const [page, setPage] = useState(1);
+  const { products, isError, isLoading, total } = usePaginatedProducts({
+    limit: 10,
+    skip: (page - 1) * 10,
+  });
 
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
   if (isError) {
-    return <h1>Error Occured...</h1>;
+    return <h1>Error Occurred...</h1>;
   }
 
-  console.log(products);
+  const displayStart = (page - 1) * 10 + 1;
+  const displayEnd = Math.min(page * 10, total);
 
   return (
     <div className="grid h-fit w-full grid-cols-2 place-items-center gap-5 sm:grid-cols-3 lg:col-span-3 lg:col-start-2 lg:grid-cols-subgrid">
-      {/* HEADER */}
       <div className="col-span-2 flex size-full items-center justify-between sm:col-span-3">
         <h1 className="text-[2rem] font-bold">Shop</h1>
 
         <div className="flex items-center justify-center gap-6">
-          <p className="text-black/60">Showing 1-10 of 100 products</p>
+          <p className="text-black/60">
+            Showing {displayStart}-{displayEnd} of {total} products
+          </p>
 
           <div className="flex size-8 items-center justify-center rounded-full bg-shade-200 p-2 lg:hidden">
             <FilterDrawer />
@@ -35,8 +42,10 @@ const ProductSection = () => {
         <ProductCard key={product.id} {...product} />
       ))}
 
-      {/* PAGINATION */}
-      <ProductPagination className="col-span-2 size-full border-t border-black/10 py-5 text-center text-black sm:col-span-3" />
+      <ProductPagination
+        total={total}
+        className="col-span-2 mb-12 sm:col-span-3 md:mb-20"
+      />
     </div>
   );
 };

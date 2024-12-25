@@ -49,7 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <PriceDisplay
           price={price}
           discountPercentage={discountPercentage}
-          className="text-lg sm:text-xl [&>p:nth-child(3)]:text-[0.625rem] sm:[&>p:nth-child(3)]:text-xs"
+          className="text-lg sm:text-xl [&>p:nth-child(3)]:px-2 [&>p:nth-child(3)]:py-1 [&>p:nth-child(3)]:text-[0.625rem] sm:[&>p:nth-child(3)]:px-3.5 sm:[&>p:nth-child(3)]:py-1.5 sm:[&>p:nth-child(3)]:text-xs"
         />
       </CardContent>
     </Card>
