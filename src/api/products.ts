@@ -1,6 +1,6 @@
 import axios from "axios";
 import { apiClient } from "@/lib/axios";
-import type { Product } from "@/types/products";
+import { Product } from "@/types/products";
 
 interface ProductsResponse {
   products: Product[];
@@ -15,10 +15,25 @@ interface PaginationParams {
   select?: string[];
 }
 
+interface SearchParams {
+  query: string;
+}
+
+interface SortParams {
+  sortBy?: keyof Product;
+  order?: 'asc' | 'desc';
+}
+
+
 export const productEndpoints = {
-  async getProducts(): Promise<ProductsResponse> {
+  async getProducts(sortOptions?: SortParams): Promise<ProductsResponse> {
     try {
-      const { data } = await apiClient.get<ProductsResponse>("products");
+      const { data } = await apiClient.get<ProductsResponse>("products", {
+        params: {
+          ...(sortOptions?.sortBy && { sortBy: sortOptions.sortBy }),
+          ...(sortOptions?.order && { order: sortOptions.order }),
+        },
+      });
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -29,7 +44,7 @@ export const productEndpoints = {
       throw new Error("Failed to fetch products");
     }
   },
-
+  
   async getProductById(id: number | string): Promise<Product> {
     try {
       const { data } = await apiClient.get<Product>(`products/${id}`);
@@ -65,6 +80,22 @@ export const productEndpoints = {
         );
       }
       throw new Error("Failed to fetch paginated products");
+    }
+  },
+
+  async searchProducts({ query }: SearchParams): Promise<ProductsResponse> {
+    try {
+      const { data } = await apiClient.get<ProductsResponse>('products/search', {
+        params: { q: query }
+      });
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(
+          error.response?.data?.message || `No products found for "${query}"`,
+        );
+      }
+      throw new Error(`Failed to search products with query "${query}"`);
     }
   },
 };

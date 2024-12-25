@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <ShopDisplaySection />
+      {/* <ShopDisplaySection /> */}
     </>
   );
 }

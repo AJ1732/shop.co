@@ -52,14 +52,3 @@ export interface ProductsState {
   skip: number;
   limit: number;
 }
-
-// export interface ProductsState {
-//   items: Product[];
-//   status: 'idle' | 'loading' | 'succeeded' | 'failed';
-//   error: string | null;
-//   metadata: {
-//     total: number;
-//     skip: number;
-//     limit: number;
-//   };
-// }

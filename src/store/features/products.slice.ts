@@ -1,13 +1,42 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { ProductsState } from "@/types/products";
-import { apiClient } from "@/lib/axios";
+import { productEndpoints } from "@/api/products";
+import type { Product } from "@/types/products";
+
+interface ProductsState {
+  items: Product[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
+  total: number;
+  skip: number;
+  limit: number;
+}
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
-  async () => {
-    const response = await apiClient.get("/products");
-    return response.data;
-  },
+  async (sortOptions?: { sortBy?: keyof Product; order?: 'asc' | 'desc' }) => {
+    return await productEndpoints.getProducts(sortOptions);
+  }
+);
+
+export const fetchProductById = createAsyncThunk(
+  "products/fetchProductById",
+  async (id: number | string) => {
+    return await productEndpoints.getProductById(id);
+  }
+);
+
+export const fetchPaginatedProducts = createAsyncThunk(
+  "products/fetchPaginatedProducts",
+  async (params: { limit?: number; skip?: number; select?: string[] }) => {
+    return await productEndpoints.getProductsWithPagination(params);
+  }
+);
+
+export const searchProducts = createAsyncThunk(
+  "products/searchProducts",
+  async (query: string) => {
+    return await productEndpoints.searchProducts({ query });
+  }
 );
 
 const initialState: ProductsState = {
@@ -25,6 +54,7 @@ const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // FETCH PRODUCTS
       .addCase(fetchProducts.pending, (state) => {
         state.status = "loading";
       })
@@ -38,6 +68,36 @@ const productsSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Failed to fetch products";
+      })
+      // PAGINATED PRODUCTS
+      .addCase(fetchPaginatedProducts.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchPaginatedProducts.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.items = action.payload.products;
+        state.total = action.payload.total;
+        state.skip = action.payload.skip;
+        state.limit = action.payload.limit;
+      })
+      .addCase(fetchPaginatedProducts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Failed to fetch paginated products";
+      })
+      // SEARCH PRODUCTS
+      .addCase(searchProducts.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(searchProducts.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.items = action.payload.products;
+        state.total = action.payload.total;
+        state.skip = action.payload.skip;
+        state.limit = action.payload.limit;
+      })
+      .addCase(searchProducts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Failed to search products";
       });
   },
 });
