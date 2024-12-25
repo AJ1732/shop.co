@@ -4,7 +4,7 @@ import {
   MastercardSVG,
   PayPalSVG,
   VisaSVG,
-} from "@/components/svg";
+} from "@/svgs";
 import { FaFacebookF, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import { footerData } from "./constants";
 

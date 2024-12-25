@@ -15,12 +15,11 @@ const ProductCard: React.FC<ProductCardProps> = async ({ id, className }) => {
   return (
     <Card className={cn("w-full border-0 shadow-none *:p-0", className)}>
       <Link href={`/shop/${id}`} className="block">
-        <figure className="bg-shade-300 relative mb-4 aspect-[86/87] overflow-hidden rounded-[1.25rem]">
+        <figure className="relative mb-4 aspect-[86/87] overflow-hidden rounded-[1.25rem] bg-shade-300">
           <Image
             fill
             src={1 && "https://i.imgur.com/QkIa5tT.jpeg"}
-            style={{ objectFit: "contain" }}
-            className="transition-all duration-300 hover:scale-105"
+            className="object-cover transition-all duration-300 hover:scale-105"
             alt="Product Image"
           />
         </figure>
