@@ -12,7 +12,7 @@ interface ShopIdPageProps {
 const ShopIdPage: React.FC<ShopIdPageProps> = ({ params }) => {
   const { shopId } = params;
   return (
-    <div>
+    <div className="lg:space-y-6">
       ProductIdPage {shopId}
       <ProductDisplaySection />
       <ProductTabSection />
