@@ -4,9 +4,14 @@ import { cn } from "@/lib/utils";
 interface StarRatingProps {
   rating: number;
   className?: string;
+  rate?: boolean;
 }
 
-const StarRating: React.FC<StarRatingProps> = ({ rating, className }) => {
+const StarRating: React.FC<StarRatingProps> = ({
+  rating,
+  className,
+  rate = true,
+}) => {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
 
@@ -39,9 +44,11 @@ const StarRating: React.FC<StarRatingProps> = ({ rating, className }) => {
       </div>
 
       {/* RATING */}
-      <p className="text-black/60">
-        <span className="text-black">{rating}</span>/5
-      </p>
+      {rate && (
+        <p className="text-black/60">
+          <span className="text-black">{rating}</span>/5
+        </p>
+      )}
     </div>
   );
 };

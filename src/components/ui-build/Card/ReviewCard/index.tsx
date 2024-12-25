@@ -6,21 +6,51 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { StarRating } from "@/components";
+import { GreenCheckSVG } from "@/svgs";
 
-const ReviewCard = () => {
+interface ReviewCardProps {
+  rating: number;
+  comment: string;
+  date: string;
+  reviewerName: string;
+  reviewerEmail: string;
+}
+
+const ReviewCard: React.FC<ReviewCardProps> = ({
+  rating,
+  comment,
+  date,
+  reviewerName,
+  reviewerEmail,
+}) => {
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+    <Card className="rounded-[1.25rem] bottom-px border-black/10">
+      <CardHeader className="space-y-0 pb-4 pt-2">
+        <StarRating rating={rating} rate={false} />
+
+        <CardTitle className="flex items-center justify-start gap-2">
+          <span>{reviewerName}</span>
+          <GreenCheckSVG />
+        </CardTitle>
+        <CardDescription>{reviewerEmail}</CardDescription>
       </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
+      <CardContent className="pb-4">
+        <p className="text-black/60">"{comment}"</p>
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <p className="text-base font-medium text-black/60">
+          Posted on {formattedDate}
+        </p>
       </CardFooter>
     </Card>
   );
 };
+
 export default ReviewCard;
