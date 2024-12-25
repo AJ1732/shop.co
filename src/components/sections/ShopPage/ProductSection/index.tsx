@@ -7,16 +7,20 @@ import { usePaginatedProducts } from "@/hooks/use-products";
 
 const ProductSection = () => {
   const [page, setPage] = useState(1);
-  const { products, isError, isLoading, total } = usePaginatedProducts({
+  const { products, isError, isLoading, total, error } = usePaginatedProducts({
     limit: 10,
     skip: (page - 1) * 10,
   });
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
 
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
   if (isError) {
-    return <h1>Error Occurred...</h1>;
+    return <h1>Error Occurred: {error}</h1>;
   }
 
   const displayStart = (page - 1) * 10 + 1;
@@ -44,7 +48,9 @@ const ProductSection = () => {
 
       <ProductPagination
         total={total}
-        className="col-span-2 mb-12 sm:col-span-3 md:mb-20"
+        currentPage={page}
+        onPageChange={handlePageChange}
+        className="col-span-2 mb-12 mt-4 sm:col-span-3 md:mb-20"
       />
     </div>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Pagination,
   PaginationContent,
@@ -13,24 +12,20 @@ import {
 
 interface ProductPaginationProps {
   total: number;
+  currentPage: number;
   itemsPerPage?: number;
-  onPageChange?: (page: number) => void;
+  onPageChange: (page: number) => void;
   className?: string;
 }
 
 const ProductPagination = ({
   total,
+  currentPage,
   itemsPerPage = 10,
   onPageChange,
   className,
 }: ProductPaginationProps) => {
-  const [currentPage, setCurrentPage] = useState(1);
   const totalPages = Math.ceil(total / itemsPerPage);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    onPageChange?.(page);
-  };
 
   const renderPageNumbers = () => {
     const pages = [];
@@ -45,7 +40,7 @@ const ProductPagination = ({
               isActive={currentPage === i}
               onClick={(e) => {
                 e.preventDefault();
-                handlePageChange(i);
+                onPageChange(i);
               }}
             >
               {i}
@@ -62,7 +57,7 @@ const ProductPagination = ({
             isActive={currentPage === 1}
             onClick={(e) => {
               e.preventDefault();
-              handlePageChange(1);
+              onPageChange(1);
             }}
           >
             1
@@ -92,7 +87,7 @@ const ProductPagination = ({
               isActive={currentPage === i}
               onClick={(e) => {
                 e.preventDefault();
-                handlePageChange(i);
+                onPageChange(i);
               }}
             >
               {i}
@@ -118,7 +113,7 @@ const ProductPagination = ({
             isActive={currentPage === totalPages}
             onClick={(e) => {
               e.preventDefault();
-              handlePageChange(totalPages);
+              onPageChange(totalPages);
             }}
           >
             {totalPages}
@@ -138,7 +133,7 @@ const ProductPagination = ({
             href={`?page=${currentPage - 1}`}
             onClick={(e) => {
               e.preventDefault();
-              if (currentPage > 1) handlePageChange(currentPage - 1);
+              if (currentPage > 1) onPageChange(currentPage - 1);
             }}
           />
         </PaginationItem>
@@ -152,7 +147,7 @@ const ProductPagination = ({
             href={`?page=${currentPage + 1}`}
             onClick={(e) => {
               e.preventDefault();
-              if (currentPage < totalPages) handlePageChange(currentPage + 1);
+              if (currentPage < totalPages) onPageChange(currentPage + 1);
             }}
           />
         </PaginationItem>

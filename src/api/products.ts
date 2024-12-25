@@ -75,10 +75,12 @@ export const productEndpoints = {
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
+        console.log(error);    
         throw new Error(
           error.response?.data?.message || "Failed to fetch paginated products",
         );
       }
+      console.log(error);
       throw new Error("Failed to fetch paginated products");
     }
   },
