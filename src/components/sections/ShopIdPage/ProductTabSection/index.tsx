@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { productDetails } from "@/constants/products";
+import type { Product } from "@/types/products";
 
 const Loader = () => <div>Loading...</div>;
 
@@ -15,7 +15,11 @@ const RatingRevewsTab = dynamic(
   { loading: () => <Loader /> },
 );
 
-const ProductTabSection = ({ id }: { id: string }) => {
+interface ProductTabSectionProps {
+  product: Product;
+}
+
+const ProductTabSection: React.FC<ProductTabSectionProps> = ({ product }) => {
   return (
     <Tabs defaultValue="details" className="pb-8">
       <TabsList className="w-full">
@@ -28,10 +32,10 @@ const ProductTabSection = ({ id }: { id: string }) => {
       </TabsList>
 
       <TabsContent value="details">
-        <ProductDetailsTab product={productDetails} id={id} />
+        <ProductDetailsTab product={product} />
       </TabsContent>
       <TabsContent value="ratings-reviews">
-        <RatingRevewsTab id={id} />
+        <RatingRevewsTab reviews={product.reviews} />
       </TabsContent>
     </Tabs>
   );

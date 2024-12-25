@@ -1,12 +1,17 @@
-import { productDetails } from "@/constants/products";
+import { Product } from "@/types/products";
 import { ImageDisplay, InfoDisplay } from "./components";
 
-const ProductDisplaySection = ({ id }: { id: string }) => {
+interface ProductDisplaySectionProps {
+  product: Product;
+}
+
+const ProductDisplaySection = ({ product }: ProductDisplaySectionProps) => {
   return (
     <div className="grid gap-x-6 max-lg:gap-y-5 lg:grid-cols-[38.125rem_1fr]">
-      <ImageDisplay id={id} />
-      <InfoDisplay pid={id} {...productDetails} />
+      <ImageDisplay images={product.images} />
+      <InfoDisplay product={product} />
     </div>
   );
 };
+
 export default ProductDisplaySection;

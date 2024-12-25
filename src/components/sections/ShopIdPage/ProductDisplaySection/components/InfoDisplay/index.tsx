@@ -1,50 +1,35 @@
 import { Minus, Plus } from "lucide-react";
 import { ButtonLink, PriceDisplay, StarRating } from "@/components";
+import type { Product } from "@/types/products";
 
 interface InfoDisplayProps {
-  id: number
-  pid: string
-  title: string;
-  rating: number;
-  price: number;
-  discountPercentage: number;
-  description: string;
-  tags: string[];
+  product: Product;
 }
 
-const InfoDisplay: React.FC<InfoDisplayProps> = ({
-  id,
-  pid,
-  title,
-  rating,
-  price,
-  discountPercentage,
-  description,
-  tags,
-}) => {
-  console.log(id);
-  console.log(pid);
-  
+const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
   return (
     <div className="flex flex-col divide-y divide-black/10">
       <header className="pb-6">
         <h2 className="font-integral text-2xl leading-[1.2] md:text-[2rem] lg:text-[2.5rem]">
-          {title} - {pid}
+          {product.title}
         </h2>
 
-        <StarRating rating={rating} />
+        <StarRating rating={product.rating} />
 
-        <PriceDisplay price={price} discountPercentage={discountPercentage} />
+        <PriceDisplay
+          price={product.price}
+          discountPercentage={product.discountPercentage}
+        />
 
         <p className="mt-3 leading-[1.375rem] text-black/60 max-md:text-sm">
-          {description}
+          {product.description}
         </p>
       </header>
 
       <div className="space-y-4 py-6 text-sm">
         <h3 className="text-black/60">Tags</h3>
         <ul className="mt-2 flex flex-wrap gap-2">
-          {tags.map((tag) => (
+          {product.tags.map((tag) => (
             <li
               key={tag}
               className="rounded-full bg-shade-200 px-5 py-3 capitalize text-black/60"
