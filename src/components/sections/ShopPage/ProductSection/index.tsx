@@ -2,8 +2,20 @@
 
 import { ProductCard } from "@/components";
 import { FilterDrawer, ProductPagination } from "../components";
+import { useProducts } from "@/hooks/use-products";
 
 const ProductSection = () => {
+  const { products, isError, isLoading } = useProducts();
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+  if (isError) {
+    return <h1>Error Occured...</h1>;
+  }
+
+  console.log(products);
+
   return (
     <div className="grid h-fit w-full grid-cols-2 place-items-center gap-5 sm:grid-cols-3 lg:col-span-3 lg:col-start-2 lg:grid-cols-subgrid">
       {/* HEADER */}
@@ -19,8 +31,8 @@ const ProductSection = () => {
         </div>
       </div>
 
-      {[1, 2, 3, 4].map((product) => (
-        <ProductCard key={product} id={product} />
+      {products.map((product) => (
+        <ProductCard key={product.id} {...product} />
       ))}
 
       {/* PAGINATION */}
