@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { productDetails } from "@/constants/products";
 
 const Loader = () => <div>Loading...</div>;
 
@@ -14,10 +15,10 @@ const RatingRevewsTab = dynamic(
   { loading: () => <Loader /> },
 );
 
-const FaqsTab = dynamic(
-  () => import("./components").then((mod) => mod.FaqsTab),
-  { loading: () => <Loader /> },
-);
+// const FaqsTab = dynamic(
+//   () => import("./components").then((mod) => mod.FaqsTab),
+//   { loading: () => <Loader /> },
+// );
 
 const ProductTabSection = () => {
   return (
@@ -29,20 +30,20 @@ const ProductTabSection = () => {
         <TabsTrigger value="ratings-reviews" className="w-full">
           Rating & Reviews
         </TabsTrigger>
-        <TabsTrigger value="faqs" className="w-full">
+        {/* <TabsTrigger value="faqs" className="w-full">
           FAQs
-        </TabsTrigger>
+        </TabsTrigger> */}
       </TabsList>
 
       <TabsContent value="details">
-        <ProductDetailsTab />
+        <ProductDetailsTab product={productDetails} />
       </TabsContent>
       <TabsContent value="ratings-reviews">
         <RatingRevewsTab />
       </TabsContent>
-      <TabsContent value="faqs">
+      {/* <TabsContent value="faqs">
         <FaqsTab />
-      </TabsContent>
+      </TabsContent> */}
     </Tabs>
   );
 };
