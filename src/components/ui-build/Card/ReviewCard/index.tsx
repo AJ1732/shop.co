@@ -42,7 +42,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
         <CardDescription>{reviewerEmail}</CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
-        <p className="text-black/60">"{comment}"</p>
+        <p className="text-black/60">&quot;{comment}&quot;</p>
       </CardContent>
       <CardFooter>
         <p className="text-base font-medium text-black/60">
