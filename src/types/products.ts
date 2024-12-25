@@ -44,11 +44,22 @@ export interface Product {
   images: string[];
 }
 
+// export interface ProductsState {
+//   items: Product[];
+//   status: 'idle' | 'loading' | 'succeeded' | 'failed';
+//   error: string | null;
+//   total: number;
+//   skip: number;
+//   limit: number;
+// }
+
 export interface ProductsState {
   items: Product[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
-  total: number;
-  skip: number;
-  limit: number;
+  metadata: {
+    total: number;
+    skip: number;
+    limit: number;
+  };
 }

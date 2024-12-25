@@ -2,8 +2,17 @@
 
 import { ProductCard } from "@/components";
 import { FilterDrawer, ProductPagination } from "../components";
+import { useProducts } from "@/hooks/use-products";
 
 const ProductSection = () => {
+  const { products, isLoading, isError, error, metadata, refetch, reset } =
+    useProducts();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error}</div>;
+
+  console.log(products);
+
   return (
     <div className="grid h-fit w-full grid-cols-2 place-items-center gap-5 sm:grid-cols-3 lg:col-span-3 lg:col-start-2 lg:grid-cols-subgrid">
       {/* HEADER */}
