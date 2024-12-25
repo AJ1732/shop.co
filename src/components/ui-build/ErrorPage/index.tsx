@@ -16,7 +16,12 @@ const ErrorPage = ({ message }: { message: string }) => {
           {message} <br /> <br />
         </p>
 
-        <ButtonLink link="/" label="Go Home" className="py-6 max-w-40 md:max-w-60 lg:max-w-80 text-lg" />
+        <ButtonLink
+          link="/"
+          className="max-w-40 py-6 text-lg md:max-w-60 lg:max-w-80"
+        >
+          Go Home
+        </ButtonLink>
       </div>
 
       <div></div>

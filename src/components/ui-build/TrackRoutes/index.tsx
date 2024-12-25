@@ -4,7 +4,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { addRoute } from "@/store/features/routesSlice";
+import { addRoute } from "@/store/features/routes-slice";
 
 const TrackRoutes = () => {
   const pathname = usePathname();
