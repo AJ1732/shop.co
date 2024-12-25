@@ -13,9 +13,8 @@ const ShopIdPage: React.FC<ShopIdPageProps> = ({ params }) => {
   const { shopId } = params;
   return (
     <div className="lg:space-y-6">
-      ProductIdPage {shopId}
-      <ProductDisplaySection />
-      <ProductTabSection />
+      <ProductDisplaySection id={shopId} />
+      <ProductTabSection id={shopId} />
     </div>
   );
 };

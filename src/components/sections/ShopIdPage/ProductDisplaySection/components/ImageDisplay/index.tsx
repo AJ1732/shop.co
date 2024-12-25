@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-const ImageDisplay = () => {
+const ImageDisplay = ({ id }: { id: string }) => {
+  console.log(id);
+  
   return (
     <div className="grid gap-3.5 md:grid-cols-[9.5rem_1fr]">
       <div className="flex w-full gap-3.5 md:flex-col">

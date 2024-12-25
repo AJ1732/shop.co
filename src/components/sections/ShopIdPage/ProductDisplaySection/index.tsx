@@ -1,11 +1,11 @@
 import { productDetails } from "@/constants/products";
 import { ImageDisplay, InfoDisplay } from "./components";
 
-const ProductDisplaySection = () => {
+const ProductDisplaySection = ({ id }: { id: string }) => {
   return (
     <div className="grid gap-x-6 max-lg:gap-y-5 lg:grid-cols-[38.125rem_1fr]">
-      <ImageDisplay />
-      <InfoDisplay {...productDetails} />
+      <ImageDisplay id={id} />
+      <InfoDisplay pid={id} {...productDetails} />
     </div>
   );
 };

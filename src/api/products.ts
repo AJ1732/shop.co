@@ -9,6 +9,11 @@ interface ProductsResponse {
   limit: number;
 }
 
+interface GetProductByIdParams {
+  id: number | string;
+  select?: string[];
+}
+
 interface PaginationParams {
   limit?: number;
   skip?: number;
@@ -21,9 +26,8 @@ interface SearchParams {
 
 interface SortParams {
   sortBy?: keyof Product;
-  order?: 'asc' | 'desc';
+  order?: "asc" | "desc";
 }
-
 
 export const productEndpoints = {
   async getProducts(sortOptions?: SortParams): Promise<ProductsResponse> {
@@ -44,15 +48,20 @@ export const productEndpoints = {
       throw new Error("Failed to fetch products");
     }
   },
-  
-  async getProductById(id: number | string): Promise<Product> {
+
+  async getProductById({ id, select }: GetProductByIdParams): Promise<Product> {
     try {
-      const { data } = await apiClient.get<Product>(`products/${id}`);
+      const { data } = await apiClient.get<Product>(`products/${id}`, {
+        params: {
+          ...(select && { select: select.join(",") }),
+        },
+      });
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         throw new Error(
-          error.response?.data?.message || `Failed to fetch product with id ${id}`,
+          error.response?.data?.message ||
+            `Failed to fetch product with id ${id}`,
         );
       }
       throw new Error(`Failed to fetch product with id ${id}`);
@@ -75,21 +84,22 @@ export const productEndpoints = {
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log(error);    
         throw new Error(
           error.response?.data?.message || "Failed to fetch paginated products",
         );
       }
-      console.log(error);
       throw new Error("Failed to fetch paginated products");
     }
   },
 
   async searchProducts({ query }: SearchParams): Promise<ProductsResponse> {
     try {
-      const { data } = await apiClient.get<ProductsResponse>('products/search', {
-        params: { q: query }
-      });
+      const { data } = await apiClient.get<ProductsResponse>(
+        "products/search",
+        {
+          params: { q: query },
+        },
+      );
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -2,6 +2,8 @@ import { Minus, Plus } from "lucide-react";
 import { ButtonLink, PriceDisplay, StarRating } from "@/components";
 
 interface InfoDisplayProps {
+  id: number
+  pid: string
   title: string;
   rating: number;
   price: number;
@@ -11,6 +13,8 @@ interface InfoDisplayProps {
 }
 
 const InfoDisplay: React.FC<InfoDisplayProps> = ({
+  id,
+  pid,
   title,
   rating,
   price,
@@ -18,11 +22,14 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({
   description,
   tags,
 }) => {
+  console.log(id);
+  console.log(pid);
+  
   return (
     <div className="flex flex-col divide-y divide-black/10">
       <header className="pb-6">
         <h2 className="font-integral text-2xl leading-[1.2] md:text-[2rem] lg:text-[2.5rem]">
-          {title}
+          {title} - {pid}
         </h2>
 
         <StarRating rating={rating} />

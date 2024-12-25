@@ -2,15 +2,18 @@
 
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { 
-  fetchProducts, 
-  fetchProductById, 
+import {
+  fetchProducts,
+  fetchProductById,
   fetchPaginatedProducts,
-  searchProducts 
+  searchProducts,
 } from "@/store/features/products.slice";
 import type { Product } from "@/types/products";
 
-export const useProducts = (sortOptions?: { sortBy?: keyof Product; order?: 'asc' | 'desc' }) => {
+export const useProducts = (sortOptions?: {
+  sortBy?: keyof Product;
+  order?: "asc" | "desc";
+}) => {
   const dispatch = useAppDispatch();
   const { items, status, error } = useAppSelector((state) => state.products);
 
@@ -28,33 +31,43 @@ export const useProducts = (sortOptions?: { sortBy?: keyof Product; order?: 'asc
   };
 };
 
-export const useProductById = (id: number | string) => {
+export const useProductById = (params: {
+  id: number | string;
+  select?: string[];
+}) => {
   const dispatch = useAppDispatch();
   const { items, status, error } = useAppSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(fetchProductById(id));
-  }, [dispatch, id]);
+    dispatch(
+      fetchProductById({
+        id: params.id,
+        select: params.select,
+      }),
+    );
+  }, [dispatch, params.id, params.select]);
 
   return {
-    product: items[0], 
-    isLoading: status === "loading",
+    product: items[0],
+    isLoading: status === "loading" || status === "idle",
     isError: status === "failed",
     error,
   };
 };
 
-export const usePaginatedProducts = (params: { 
-  limit?: number; 
-  skip?: number; 
-  select?: string[] 
+export const usePaginatedProducts = (params: {
+  limit?: number;
+  skip?: number;
+  select?: string[];
 }) => {
   const dispatch = useAppDispatch();
-  const { items, status, error, total } = useAppSelector((state) => state.products);
+  const { items, status, error, total } = useAppSelector(
+    (state) => state.products,
+  );
 
   useEffect(() => {
     dispatch(fetchPaginatedProducts(params));
-  }, [dispatch, params.skip, params.limit]); 
+  }, [dispatch, params.skip, params.limit]);
 
   return {
     products: items,
@@ -67,7 +80,9 @@ export const usePaginatedProducts = (params: {
 
 export const useSearchProducts = (query: string) => {
   const dispatch = useAppDispatch();
-  const { items, status, error, total } = useAppSelector((state) => state.products);
+  const { items, status, error, total } = useAppSelector(
+    (state) => state.products,
+  );
 
   useEffect(() => {
     if (query) {

@@ -15,12 +15,7 @@ const RatingRevewsTab = dynamic(
   { loading: () => <Loader /> },
 );
 
-// const FaqsTab = dynamic(
-//   () => import("./components").then((mod) => mod.FaqsTab),
-//   { loading: () => <Loader /> },
-// );
-
-const ProductTabSection = () => {
+const ProductTabSection = ({ id }: { id: string }) => {
   return (
     <Tabs defaultValue="details" className="pb-8">
       <TabsList className="w-full">
@@ -30,20 +25,14 @@ const ProductTabSection = () => {
         <TabsTrigger value="ratings-reviews" className="w-full">
           Rating & Reviews
         </TabsTrigger>
-        {/* <TabsTrigger value="faqs" className="w-full">
-          FAQs
-        </TabsTrigger> */}
       </TabsList>
 
       <TabsContent value="details">
-        <ProductDetailsTab product={productDetails} />
+        <ProductDetailsTab product={productDetails} id={id} />
       </TabsContent>
       <TabsContent value="ratings-reviews">
-        <RatingRevewsTab />
+        <RatingRevewsTab id={id} />
       </TabsContent>
-      {/* <TabsContent value="faqs">
-        <FaqsTab />
-      </TabsContent> */}
     </Tabs>
   );
 };

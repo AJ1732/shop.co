@@ -11,6 +11,11 @@ interface ProductsState {
   limit: number;
 }
 
+interface GetProductByIdParams {
+  id: number | string;
+  select?: string[];
+}
+
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (sortOptions?: { sortBy?: keyof Product; order?: 'asc' | 'desc' }) => {
@@ -20,8 +25,8 @@ export const fetchProducts = createAsyncThunk(
 
 export const fetchProductById = createAsyncThunk(
   "products/fetchProductById",
-  async (id: number | string) => {
-    return await productEndpoints.getProductById(id);
+  async ({ id, select }: GetProductByIdParams) => {
+    return await productEndpoints.getProductById({ id, select });
   }
 );
 
