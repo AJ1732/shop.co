@@ -28,7 +28,7 @@ export default function ButtonDemo({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        "rounded-full px-6 py-3 transition-all duration-300 active:scale-[0.99]",
+        "rounded-full px-6 py-4 transition-all duration-300 active:scale-[0.99]",
         className,
       )}
     >
