@@ -21,7 +21,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
   rating,
 }) => {
   return (
-    <Card className={cn("w-full border-0 shadow-none *:p-0", className)}>
+    <Card
+      className={cn("relative w-full border-0 shadow-none *:p-0", className)}
+    >
       <Link href={`/shop/${id}`} className="block">
         <figure className="relative mb-4 aspect-[86/87] overflow-hidden rounded-[1.25rem] bg-shade-300">
           <Image
@@ -50,6 +52,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           price={price}
           discountPercentage={discountPercentage}
           className="text-lg sm:text-xl [&>p:nth-child(3)]:px-2 [&>p:nth-child(3)]:py-1 [&>p:nth-child(3)]:text-[0.625rem] sm:[&>p:nth-child(3)]:px-3.5 sm:[&>p:nth-child(3)]:py-1.5 sm:[&>p:nth-child(3)]:text-xs"
+          mobile
         />
       </CardContent>
     </Card>
