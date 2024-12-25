@@ -16,8 +16,13 @@ const StarRating: React.FC<StarRatingProps> = ({
   const hasHalfStar = rating % 1 !== 0;
 
   return (
-    <div className="my-3 flex items-center justify-start gap-2 md:my-3.5">
-      <div className={cn("flex gap-2", className)}>
+    <div
+      className={cn(
+        "my-3 flex items-center justify-start gap-2 md:my-3.5",
+        className,
+      )}
+    >
+      <div className={cn("flex gap-2")}>
         {/* FULL STARS */}
         {[...Array(fullStars)].map((_, index) => (
           <StarSVG key={`full-${index}`} className="fill-[#FFC633]" />

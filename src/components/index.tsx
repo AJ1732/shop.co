@@ -10,6 +10,7 @@ export { default as BreadCrumbNav } from "./ui-build/BreadCrumbNav";
 export { default as ButtonLink } from "./ui-build/ButtonLink";
 export { default as ErrorPage } from "./ui-build/ErrorPage";
 export { default as InputField } from "./ui-build/InputField";
+export { default as PriceDisplay } from "./ui-build/PriceDisplay";
 export { default as StarRating } from "./ui-build/StarRating";
 
 // CARD COMPONENTS
