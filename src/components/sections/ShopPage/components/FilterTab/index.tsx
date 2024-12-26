@@ -42,7 +42,7 @@ const FilterTab = () => {
       <Accordion type="multiple">
         <AccordionItem value="category" defaultValue={["category"]}>
           <AccordionTrigger>Category</AccordionTrigger>
-          <AccordionContent className="no-scrollbar flex max-h-[calc(100dvh-16rem)] flex-col gap-5 overflow-y-scroll text-left">
+          <AccordionContent className="no-scrollbar flex max-h-[calc(100dvh-26rem)] flex-col gap-5 overflow-y-scroll text-left">
             {categories.map((category) => (
               <button
                 key={category}
