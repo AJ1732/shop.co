@@ -1,4 +1,4 @@
-import { ButtonLink, ProductCard } from "@/components";
+import { ButtonLink, ProductCardSkeleton } from "@/components";
 
 const ShopDisplaySection = () => {
   return (
@@ -9,7 +9,7 @@ const ShopDisplaySection = () => {
 
       <div className="flex items-center justify-between gap-4">
         {[1, 2, 3, 4].map((item) => (
-          <ProductCard key={item} id={item} />
+          <ProductCardSkeleton key={item} />
         ))}
       </div>
 
