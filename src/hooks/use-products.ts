@@ -32,7 +32,7 @@ export const useProducts = (sortOptions?: {
 };
 
 export const useProductById = (params: {
-  id: number | string;
+  id: string | string[] | number;
   select?: string[];
 }): {
   product: Product | undefined;
@@ -44,19 +44,19 @@ export const useProductById = (params: {
   const { items, status, error } = useAppSelector((state) => state.products);
 
   useEffect(() => {
-    if (status === "idle" || !items.length) {
-      dispatch(
-        fetchProductById({
-          id: params.id,
-          select: params.select,
-        }),
-      );
-    }
-  }, [params.id, params.select]);
+    const productId = Array.isArray(params.id) ? params.id[0] : params.id;
+
+    dispatch(
+      fetchProductById({
+        id: productId,
+        select: params.select,
+      }),
+    );
+  }, [dispatch, params.id, params.select]);
 
   return {
     product: items[0],
-    isLoading: status === "loading" || status === "idle",
+    isLoading: status === "loading",
     isError: status === "failed",
     error,
   };

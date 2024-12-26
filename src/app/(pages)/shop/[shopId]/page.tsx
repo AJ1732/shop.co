@@ -1,5 +1,6 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { useProductById } from "@/hooks/use-products";
 import {
   ProductDisplaySection,
@@ -7,14 +8,8 @@ import {
 } from "@/components/sections/ShopIdPage";
 // import { Loader } from "@/components";
 
-interface ShopIdPageProps {
-  params: {
-    shopId: string;
-  };
-}
-
-const ShopIdPage: React.FC<ShopIdPageProps> = ({ params }) => {
-  const { shopId } = params;
+const ShopIdPage = () => {
+  const { shopId } = useParams();
   const { product, isLoading, isError } = useProductById({ id: shopId });
 
   if (isLoading) return <h1>Loading...</h1>;
