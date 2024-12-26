@@ -47,7 +47,7 @@ const ProductSection = () => {
       <header className="col-span-2 flex size-full items-center justify-between sm:col-span-3">
         <h1 className="text-[2rem] font-bold">Shop</h1>
 
-        <div className="flex items-center justify-center gap-6">
+        <div className="flex items-center justify-center gap-3 lg:gap-6">
           <p className="text-black/60">
             Showing {displayStart}-{displayEnd} of {total} products
           </p>
