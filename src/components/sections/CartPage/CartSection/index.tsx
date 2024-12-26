@@ -4,6 +4,8 @@ import { useCart } from "@/hooks/use-cart";
 
 const CartSection = () => {
   const { items, removeItem, updateItemQuantity } = useCart();
+  console.log(items);
+  
 
   if (!items.length) {
     return (

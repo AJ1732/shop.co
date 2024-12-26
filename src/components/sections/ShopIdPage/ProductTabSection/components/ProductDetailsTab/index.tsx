@@ -15,15 +15,11 @@ const DetailRow = ({
 
 interface ProductDetailsTabProps {
   product: Product;
-  id?: string;
 }
 
 const ProductDetailsTab: React.FC<ProductDetailsTabProps> = ({
   product,
-  id,
 }) => {
-  console.log(id);
-
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div className="space-y-1">

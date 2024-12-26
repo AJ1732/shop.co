@@ -1,12 +1,38 @@
+"use client";
+import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { ButtonLink, PriceDisplay, StarRating } from "@/components";
 import type { Product } from "@/types/products";
+import { useCart } from "@/hooks/use-cart";
 
 interface InfoDisplayProps {
   product: Product;
 }
 
 const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
+  const [quantity, setQuantity] = useState(1);
+  const { addItem } = useCart();
+
+  const handleQuantityChange = (change: number) => {
+    const newQuantity = quantity + change;
+    if (newQuantity > 0) {
+      setQuantity(newQuantity);
+    }
+  };
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      category: product.category,
+      thumbnail: product.thumbnail,
+      discountPercentage: product.discountPercentage,
+      // quantity,
+    });
+    setQuantity(1); // Reset quantity after adding
+  };
+
   return (
     <div className="flex flex-col divide-y divide-black/10">
       <header className="pb-6">
@@ -40,20 +66,30 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
         </ul>
       </div>
 
-      <div className="flex items-center justify-between gap-5 py-6">
-        <div className="flex h-full items-center justify-center gap-4 rounded-full bg-shade-200 px-4 py-3 font-medium lg:gap-8 lg:px-5 lg:py-4">
-          <button type="button" className="active:scale-90">
+      <div className="flex items-center justify-between gap-4 py-6">
+        <div className="flex h-ful items-center justify-center gap-6 rounded-full bg-shade-200 px-4 py-4 font-medium lg:gap-8 lg:px-5 lg:py-4">
+          <button
+            type="button"
+            onClick={() => handleQuantityChange(-1)}
+            className="active:scale-90"
+          >
             <Minus className="size-6" />
           </button>
 
-          <span>1</span>
+          <span>{quantity}</span>
 
-          <button type="button" className="active:scale-90">
+          <button
+            type="button"
+            onClick={() => handleQuantityChange(1)}
+            className="active:scale-90"
+          >
             <Plus className="size-6" />
           </button>
         </div>
 
-        <ButtonLink className="size-full">Add to Cart</ButtonLink>
+        <ButtonLink onClick={handleAddToCart} className="size-full">
+          Add to Cart
+        </ButtonLink>
       </div>
     </div>
   );
