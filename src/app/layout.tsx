@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { CTASection, Navbar, Footer } from "@/components";
-import ReduxProvider from "@/provider";
+import { ReduxProvider } from "@/provider/redux";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });

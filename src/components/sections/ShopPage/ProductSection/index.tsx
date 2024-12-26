@@ -8,11 +8,14 @@ import {
   ProductSectionHeaderSkeleton,
 } from "@/components";
 import { FilterDrawer, ProductPagination } from "../components";
+import { useFilter } from "@/provider/filter-context";
 import { useProducts } from "@/hooks/use-products";
 
 const ProductSection = () => {
   const [page, setPage] = useState(1);
+  const { selectedCategory } = useFilter();
   const { products, isError, isLoading, total, error } = useProducts({
+    category: selectedCategory,
     limit: 10,
     skip: (page - 1) * 10,
     select: [

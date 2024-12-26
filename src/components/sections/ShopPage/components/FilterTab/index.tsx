@@ -8,6 +8,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ButtonLink } from "@/components";
+import { useFilter } from "@/provider/filter-context";
+import { cn } from "@/lib/utils";
 
 const categories = [
   "beauty",
@@ -37,6 +39,12 @@ const categories = [
 ];
 
 const FilterTab = () => {
+  const { selectedCategory, setSelectedCategory } = useFilter();
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category === selectedCategory ? undefined : category);
+  };
+
   return (
     <div className="space-y-6 border-t border-black/10">
       <Accordion type="multiple">
@@ -46,7 +54,13 @@ const FilterTab = () => {
             {categories.map((category) => (
               <button
                 key={category}
-                className={`flex items-center justify-between gap-2 py-1 text-black/60 transition-colors hover:text-black/80`}
+                onClick={() => handleCategorySelect(category)}
+                className={cn(
+                  `flex items-center justify-between gap-2 py-1 transition-colors`,
+                  selectedCategory === category
+                    ? "font-medium text-black"
+                    : "text-black/60 hover:text-black/80",
+                )}
               >
                 <span className="capitalize">{category}</span>
                 <ChevronRight className="size-4" />
@@ -54,18 +68,14 @@ const FilterTab = () => {
             ))}
           </AccordionContent>
         </AccordionItem>
-
-        {/* <AccordionItem value="price">
-          <AccordionTrigger>Price</AccordionTrigger>
-          <AccordionContent>Tageted Price</AccordionContent>
-        </AccordionItem> */}
       </Accordion>
 
       <ButtonLink
-        disabled
+        onClick={() => setSelectedCategory(undefined)}
+        disabled={!selectedCategory}
         className="w-full py-4 text-sm font-medium disabled:opacity-50"
       >
-        {true ? "Applying..." : "Apply Filter"}
+        Clear Filter
       </ButtonLink>
     </div>
   );
