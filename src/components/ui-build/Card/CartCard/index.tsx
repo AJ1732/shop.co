@@ -15,15 +15,12 @@ const CartCard: React.FC<CartCardProps> = ({ title }) => {
       <figure className="aspect-square min-w-[6.1875rem] rounded-lg bg-[#F0EEED] lg:min-w-[7.75rem]"></figure>
 
       <div className="flex size-full items-center justify-between">
-        <div className="flex h-full flex-col items-start justify-between gap-4 *:p-0">
+        <div className="flex h-full flex-col items-start justify-between gap-7 *:p-0">
           <CardHeader className="space-y-0.5">
-            <CardTitle className="space-y-1 text-base capitalize md:text-xl">
+            <CardTitle className="text-base capitalize md:text-xl">
               {title}
             </CardTitle>
             <CardDescription className="text-xs text-black md:text-sm [&>span]:block">
-              <span>
-                Category: <span className="text-black/60">Clothes</span>
-              </span>
               <span>
                 Category: <span className="text-black/60">Clothes</span>
               </span>
