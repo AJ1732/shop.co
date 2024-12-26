@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
+
 @font-face {
   font-family: "Integral CF";
   src: url("/fonts/Integral_CF/Fontspring-DEMO-integralcf-bold.otf");
@@ -93,3 +93,15 @@
   grid-column: full-width;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
