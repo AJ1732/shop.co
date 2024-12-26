@@ -8,11 +8,11 @@ import {
   ProductSectionHeaderSkeleton,
 } from "@/components";
 import { FilterDrawer, ProductPagination } from "../components";
-import { usePaginatedProducts } from "@/hooks/use-products";
+import { useProducts } from "@/hooks/use-products";
 
 const ProductSection = () => {
   const [page, setPage] = useState(1);
-  const { products, isError, isLoading, total, error } = usePaginatedProducts({
+  const { products, isError, isLoading, total, error } = useProducts({
     limit: 10,
     skip: (page - 1) * 10,
     select: [
@@ -44,9 +44,7 @@ const ProductSection = () => {
     );
   }
 
-  if (isError) {
-    return <h1>Error Occurred: {error}</h1>;
-  }
+  if (isError) return <div>Error: {error}</div>;
 
   const displayStart = (page - 1) * 10 + 1;
   const displayEnd = Math.min(page * 10, total);
