@@ -22,5 +22,3 @@ export type ProductCardProps = Omit<
   thumbnail: string;
   rating: number
 };
-
-export type OrderSummaryCardProps = Omit<CardProps, "title">;

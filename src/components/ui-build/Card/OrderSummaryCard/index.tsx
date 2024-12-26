@@ -7,8 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { OrderSummaryCardProps } from "@/types/card";
 import { formatCurrency } from "@/utils";
+
+interface OrderSummaryCardProps {
+
+}
 
 const OrderSummaryCard: React.FC<OrderSummaryCardProps> = () => {
   return (
