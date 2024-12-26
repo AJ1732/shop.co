@@ -21,8 +21,9 @@ const ProductSection = () => {
       "price",
       "discountPercentage",
       "rating",
-      "thumbnail"
-    ]
+      "thumbnail",
+      "tags",
+    ],
   });
 
   const handlePageChange = (newPage: number) => {
