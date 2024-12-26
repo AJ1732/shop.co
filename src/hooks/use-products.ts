@@ -11,22 +11,39 @@ import {
 } from "@/store/features/products.slice";
 import type { Product } from "@/types/products";
 
-export const useProducts = (sortOptions?: {
+interface GetProductsParams {
+  category?: string;
+  query?: string;
+  limit?: number;
+  skip?: number;
+  select?: string[];
   sortBy?: keyof Product;
-  order?: "asc" | "desc";
-}) => {
+  order?: 'asc' | 'desc';
+}
+
+export const useProducts = (params?: GetProductsParams) => {
   const dispatch = useAppDispatch();
-  const { items, status, error } = useAppSelector((state) => state.products);
+  const { items, status, error, total } = useAppSelector((state) => state.products);
 
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchProducts(sortOptions));
+    if (status === "idle" || params) {
+      dispatch(fetchProducts(params));
     }
-  }, [status, dispatch, sortOptions]);
+  }, [
+    dispatch,
+    params?.category,
+    params?.query,
+    params?.limit,
+    params?.skip,
+    params?.select?.join(','),
+    params?.sortBy,
+    params?.order
+  ]);
 
   return {
     products: items,
-    isLoading: status === "loading",
+    total,
+    isLoading: status === "loading" || status === "idle",
     isError: status === "failed",
     error,
   };

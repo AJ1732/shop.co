@@ -9,6 +9,15 @@ interface ProductsResponse {
   limit: number;
 }
 
+interface GetProductsParams {
+  category?: string;
+  query?: string;
+  limit?: number;
+  skip?: number;
+  select?: string[];
+  sortBy?: keyof Product;
+  order?: 'asc' | 'desc';
+}
 interface GetProductByIdParams {
   id: number | string;
   select?: string[];
@@ -37,22 +46,37 @@ interface SortParams {
 }
 
 export const productEndpoints = {
-  async getProducts(sortOptions?: SortParams): Promise<ProductsResponse> {
+  async getProducts(params?: GetProductsParams): Promise<ProductsResponse> {
     try {
-      const { data } = await apiClient.get<ProductsResponse>("products", {
-        params: {
-          ...(sortOptions?.sortBy && { sortBy: sortOptions.sortBy }),
-          ...(sortOptions?.order && { order: sortOptions.order }),
-        },
+      let endpoint = 'products';
+
+      if (params?.category) {
+        endpoint = `products/category/${params.category}`;
+      } else if (params?.query) {
+        endpoint = 'products/search';
+      }
+
+      const queryParams = {
+        ...(params?.query && { q: params.query }),
+        ...(params?.limit && { limit: params.limit }),
+        ...(params?.skip && { skip: params.skip }),
+        ...(params?.select && { select: params.select.join(',') }),
+        ...(params?.sortBy && { sortBy: params.sortBy }),
+        ...(params?.order && { order: params.order }),
+      };
+
+      const { data } = await apiClient.get<ProductsResponse>(endpoint, {
+        params: queryParams,
       });
+
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         throw new Error(
-          error.response?.data?.message || "Failed to fetch products",
+          error.response?.data?.message || 'Failed to fetch products'
         );
       }
-      throw new Error("Failed to fetch products");
+      throw new Error('Failed to fetch products');
     }
   },
 
