@@ -14,6 +14,13 @@ interface GetProductByIdParams {
   select?: string[];
 }
 
+interface CategoryParams {
+  category: string;
+  select?: string[];
+  limit?: number;
+  skip?: number;
+}
+
 interface PaginationParams {
   limit?: number;
   skip?: number;
@@ -65,6 +72,26 @@ export const productEndpoints = {
         );
       }
       throw new Error(`Failed to fetch product with id ${id}`);
+    }
+  },
+
+  async getProductsByCategory({ category, select, limit, skip }: CategoryParams): Promise<ProductsResponse> {
+    try {
+      const { data } = await apiClient.get<ProductsResponse>(`products/category/${category}`, {
+        params: {
+          ...(select && { select: select.join(",") }),
+          ...(limit && { limit }),
+          ...(skip && { skip }),
+        },
+      });
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(
+          error.response?.data?.message || `Failed to fetch products in category ${category}`,
+        );
+      }
+      throw new Error(`Failed to fetch products in category ${category}`);
     }
   },
 

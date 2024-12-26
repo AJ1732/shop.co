@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   fetchProducts,
   fetchProductById,
+  fetchProductsByCategory,
   fetchPaginatedProducts,
   searchProducts,
 } from "@/store/features/products.slice";
@@ -57,6 +58,28 @@ export const useProductById = (params: {
   return {
     product: items[0],
     isLoading: status === "loading",
+    isError: status === "failed",
+    error,
+  };
+};
+
+export const useProductsByCategory = (params: {
+  category: string;
+  select?: string[];
+  limit?: number;
+  skip?: number;
+}) => {
+  const dispatch = useAppDispatch();
+  const { items, status, error, total } = useAppSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProductsByCategory(params));
+  }, [dispatch, params.category, params.select, params.limit, params.skip]);
+
+  return {
+    products: items,
+    total,
+    isLoading: status === "loading" || status === "idle",
     isError: status === "failed",
     error,
   };

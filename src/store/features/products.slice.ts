@@ -16,6 +16,13 @@ interface GetProductByIdParams {
   select?: string[];
 }
 
+interface CategoryParams {
+  category: string;
+  select?: string[];
+  limit?: number;
+  skip?: number;
+}
+
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (sortOptions?: { sortBy?: keyof Product; order?: 'asc' | 'desc' }) => {
@@ -27,6 +34,13 @@ export const fetchProductById = createAsyncThunk(
   "products/fetchProductById",
   async ({ id, select }: GetProductByIdParams) => {
     return await productEndpoints.getProductById({ id, select });
+  }
+);
+
+export const fetchProductsByCategory = createAsyncThunk(
+  "products/fetchProductsByCategory",
+  async ({ category, select, limit, skip }: CategoryParams) => {
+    return await productEndpoints.getProductsByCategory({ category, select, limit, skip });
   }
 );
 
@@ -86,6 +100,21 @@ const productsSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message || "Failed to fetch product";
       })
+// FETCH PRODUCTS BY CATEGORY
+.addCase(fetchProductsByCategory.pending, (state) => {
+  state.status = "loading";
+})
+.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+  state.status = "succeeded";
+  state.items = action.payload.products;
+  state.total = action.payload.total;
+  state.skip = action.payload.skip;
+  state.limit = action.payload.limit;
+})
+.addCase(fetchProductsByCategory.rejected, (state, action) => {
+  state.status = "failed";
+  state.error = action.error.message || "Failed to fetch category products";
+})
       // PAGINATED PRODUCTS
       .addCase(fetchPaginatedProducts.pending, (state) => {
         state.status = "loading";
