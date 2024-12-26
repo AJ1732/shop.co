@@ -61,7 +61,10 @@ const FilterTab = () => {
         </AccordionItem> */}
       </Accordion>
 
-      <ButtonLink className="w-full py-4 text-sm font-medium disabled:opacity-50">
+      <ButtonLink
+        disabled
+        className="w-full py-4 text-sm font-medium disabled:opacity-50"
+      >
         {true ? "Applying..." : "Apply Filter"}
       </ButtonLink>
     </div>
