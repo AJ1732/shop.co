@@ -4,7 +4,7 @@ import type { Product } from "@/types/products";
 
 interface ProductsState {
   items: Product[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   total: number;
   skip: number;
@@ -18,7 +18,7 @@ interface GetProductsParams {
   skip?: number;
   select?: string[];
   sortBy?: keyof Product;
-  order?: 'asc' | 'desc';
+  order?: "asc" | "desc";
 }
 
 interface GetProductByIdParams {
@@ -37,35 +37,40 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (params?: GetProductsParams) => {
     return await productEndpoints.getProducts(params);
-  }
+  },
 );
 
 export const fetchProductById = createAsyncThunk(
   "products/fetchProductById",
   async ({ id, select }: GetProductByIdParams) => {
     return await productEndpoints.getProductById({ id, select });
-  }
+  },
 );
 
 export const fetchProductsByCategory = createAsyncThunk(
   "products/fetchProductsByCategory",
   async ({ category, select, limit, skip }: CategoryParams) => {
-    return await productEndpoints.getProductsByCategory({ category, select, limit, skip });
-  }
+    return await productEndpoints.getProductsByCategory({
+      category,
+      select,
+      limit,
+      skip,
+    });
+  },
 );
 
 export const fetchPaginatedProducts = createAsyncThunk(
   "products/fetchPaginatedProducts",
   async (params: { limit?: number; skip?: number; select?: string[] }) => {
     return await productEndpoints.getProductsWithPagination(params);
-  }
+  },
 );
 
 export const searchProducts = createAsyncThunk(
   "products/searchProducts",
   async (query: string) => {
     return await productEndpoints.searchProducts({ query });
-  }
+  },
 );
 
 const initialState: ProductsState = {
@@ -104,27 +109,28 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProductById.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.items = [action.payload]; 
+        state.items = [action.payload];
       })
       .addCase(fetchProductById.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Failed to fetch product";
       })
-// FETCH PRODUCTS BY CATEGORY
-.addCase(fetchProductsByCategory.pending, (state) => {
-  state.status = "loading";
-})
-.addCase(fetchProductsByCategory.fulfilled, (state, action) => {
-  state.status = "succeeded";
-  state.items = action.payload.products;
-  state.total = action.payload.total;
-  state.skip = action.payload.skip;
-  state.limit = action.payload.limit;
-})
-.addCase(fetchProductsByCategory.rejected, (state, action) => {
-  state.status = "failed";
-  state.error = action.error.message || "Failed to fetch category products";
-})
+      // FETCH PRODUCTS BY CATEGORY
+      .addCase(fetchProductsByCategory.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.items = action.payload.products;
+        state.total = action.payload.total;
+        state.skip = action.payload.skip;
+        state.limit = action.payload.limit;
+      })
+      .addCase(fetchProductsByCategory.rejected, (state, action) => {
+        state.status = "failed";
+        state.error =
+          action.error.message || "Failed to fetch category products";
+      })
       // PAGINATED PRODUCTS
       .addCase(fetchPaginatedProducts.pending, (state) => {
         state.status = "loading";
@@ -138,7 +144,8 @@ const productsSlice = createSlice({
       })
       .addCase(fetchPaginatedProducts.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Failed to fetch paginated products";
+        state.error =
+          action.error.message || "Failed to fetch paginated products";
       })
       // SEARCH PRODUCTS
       .addCase(searchProducts.pending, (state) => {
