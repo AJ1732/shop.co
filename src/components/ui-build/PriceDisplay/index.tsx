@@ -28,7 +28,7 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
       <p
         className={cn(
           "w-fit rounded-full bg-warn/10 px-3.5 py-1.5 text-sm font-medium text-warn",
-          mobile && "right-2 top-2 max-sm:absolute",
+          mobile && "right-2 top-2 max-lg:absolute",
         )}
       >
         -{discountPercentage}%

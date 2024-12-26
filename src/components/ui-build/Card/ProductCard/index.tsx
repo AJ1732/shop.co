@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import {
   Card,
   CardContent,
@@ -47,7 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="mt-2 text-xl font-bold sm:mt-3 md:text-2xl">
+      <CardContent className="mt-2 overflow-hidden text-xl font-bold sm:mt-3 md:text-2xl">
         <PriceDisplay
           price={price}
           discountPercentage={discountPercentage}
