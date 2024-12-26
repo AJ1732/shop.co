@@ -18,3 +18,8 @@ export { default as CartCard } from "./ui-build/Card/CartCard";
 export { default as OrderSummaryCard } from "./ui-build/Card/OrderSummaryCard";
 export { default as ProductCard } from "./ui-build/Card/ProductCard";
 export { default as ReviewCard } from "./ui-build/Card/ReviewCard";
+
+// SKELETONS COMPONENTS
+export { default as ProductCardSkeleton } from "./ui-build/Skeletons/ProductCardSkeleton";
+export { default as ProductPaginationSkeleton } from "./ui-build/Skeletons/ProductPaginationSkeleton";
+export { default as ProductSectionHeaderSkeleton } from "./ui-build/Skeletons/ProductSectionHeaderSkeleton";
