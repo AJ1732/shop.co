@@ -15,6 +15,14 @@ const ProductSection = () => {
   const { products, isError, isLoading, total, error } = usePaginatedProducts({
     limit: 10,
     skip: (page - 1) * 10,
+    select: [
+      "id",
+      "title",
+      "price",
+      "discountPercentage",
+      "rating",
+      "thumbnail"
+    ]
   });
 
   const handlePageChange = (newPage: number) => {
