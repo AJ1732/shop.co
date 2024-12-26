@@ -1,37 +1,4 @@
-interface ProductDimensions {
-  width: number;
-  height: number;
-  depth: number;
-}
-
-interface ProductMeta {
-  createdAt: string;
-  updatedAt: string;
-  barcode: string;
-  qrCode: string;
-}
-
-interface ProductDetails {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  tags: string[];
-  brand: string;
-  sku: string;
-  weight: number;
-  dimensions: ProductDimensions;
-  warrantyInformation: string;
-  shippingInformation: string;
-  availabilityStatus: string;
-  returnPolicy: string;
-  minimumOrderQuantity: number;
-  meta: ProductMeta;
-}
+import { Product } from "@/types/products";
 
 const DetailRow = ({
   label,
@@ -47,13 +14,16 @@ const DetailRow = ({
 );
 
 interface ProductDetailsTabProps {
-  product: ProductDetails;
+  product: Product;
   id?: string;
 }
 
-const ProductDetailsTab: React.FC<ProductDetailsTabProps> = ({ product, id }) => {
+const ProductDetailsTab: React.FC<ProductDetailsTabProps> = ({
+  product,
+  id,
+}) => {
   console.log(id);
-  
+
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div className="space-y-1">

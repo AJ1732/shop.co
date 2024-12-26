@@ -21,5 +21,7 @@ export { default as ReviewCard } from "./ui-build/Card/ReviewCard";
 
 // SKELETONS COMPONENTS
 export { default as ProductCardSkeleton } from "./ui-build/Skeletons/ProductCardSkeleton";
+export { default as ProductDisplaySectionSkeleton } from "./ui-build/Skeletons/ProductDisplaySectionSkeleton";
 export { default as ProductPaginationSkeleton } from "./ui-build/Skeletons/ProductPaginationSkeleton";
 export { default as ProductSectionHeaderSkeleton } from "./ui-build/Skeletons/ProductSectionHeaderSkeleton";
+export { default as ProductTabSectionSkeleton } from "./ui-build/Skeletons/ProductTabSectionSkeleton";
