@@ -35,15 +35,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} content-grid font-satoshi`}>
-        <NextTopLoader color="#000" easing="easeInOut" />
-        <Navbar />
         <ReduxProvider>
+          <NextTopLoader color="#000" easing="easeInOut" />
+          <Navbar />
           <main className="full-width content-grid mt-[3.5rem] min-h-[calc(100dvh-10rem)] md:mt-[4rem] lg:mt-[6rem]">
             {children}
           </main>
+          <CTASection />
+          <Footer />
         </ReduxProvider>
-        <CTASection />
-        <Footer />
       </body>
     </html>
   );

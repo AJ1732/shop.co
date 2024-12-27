@@ -1,31 +1,21 @@
 "use client";
+
 import Link from "next/link";
 import { useState } from "react";
-
 import {
   AlignLeft,
   CircleUserRound,
   SearchIcon,
   ShoppingCart,
 } from "lucide-react";
-import { NavLinks } from "@/types/navlink";
 import { InputField } from "@/components";
 import { Navigation } from "./components";
+import { useCart } from "@/hooks/use-cart";
 import { cn } from "@/lib/utils";
-
-const navlinks: NavLinks[] = [
-  {
-    name: "shop",
-    link: "/shop",
-  },
-  {
-    name: "categories",
-    link: ["/category/1", "/category/2"],
-  },
-];
 
 const Navbar = () => {
   const [openNav, setOpenNav] = useState(false);
+  const { items } = useCart();
 
   return (
     <header className="content-grid fixed z-50 w-full bg-white">
@@ -64,8 +54,11 @@ const Navbar = () => {
             <SearchIcon className="size-6" />
           </div>
 
-          <Link href={"/cart"}>
+          <Link href={"/cart"} className="relative">
             <ShoppingCart />
+            <span className="absolute -right-2 -top-2 rounded-full bg-zinc-100 px-1 text-sm font-medium">
+              {items.length}
+            </span>
           </Link>
 
           <CircleUserRound />
@@ -86,24 +79,6 @@ const Navbar = () => {
 
         <nav className="z-10 h-fit rounded-2xl bg-black px-8 py-10 text-white">
           <Navigation />
-          {/* <ul className="flex flex-col items-start justify-center gap-6">
-            {navlinks.map(({ name, link }) => {
-              return (
-                <li key={name} className="text-xl">
-                  {Array.isArray(link) ? (
-                    <div className="flex items-center justify-center gap-1">
-                      <span>{name}</span>
-                      <ChevronDown className="mt-1 stroke-shade-200" />
-                    </div>
-                  ) : (
-                    <Link href={link} className="block">
-                      {name}
-                    </Link>
-                  )}
-                </li>
-              );
-            })}
-          </ul> */}
         </nav>
       </div>
     </header>
