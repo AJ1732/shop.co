@@ -61,7 +61,9 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <CircleUserRound />
+          <Link href={"/profile"}>
+            <CircleUserRound />
+          </Link>
         </div>
       </nav>
 
