@@ -54,7 +54,7 @@ const CartCard: React.FC<CartCardProps> = ({
       </figure>
 
       <div className="flex size-full items-center justify-between">
-        <div className="flex h-full flex-col items-start justify-between gap-7 *:p-0">
+        <div className="flex h-full flex-col items-start justify-between gap-2 *:p-0 sm:gap-7">
           <CardHeader className="space-y-0.5">
             <CardTitle className="text-base capitalize md:text-xl">
               {title}
