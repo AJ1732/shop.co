@@ -42,7 +42,7 @@ const CartCard: React.FC<CartCardProps> = ({
 
   return (
     <Card className="flex w-full items-center justify-start gap-4 rounded-none border-0 py-4 shadow-none md:py-6">
-      <figure className="aspect-square min-w-[6.1875rem] rounded-lg bg-[#F0EEED] lg:min-w-[7.75rem]">
+      <figure className="relative aspect-square min-w-[6.1875rem] overflow-hidden rounded-lg bg-[#F0EEED] lg:min-w-[7.75rem]">
         <Image
           src={thumbnail}
           alt={title}

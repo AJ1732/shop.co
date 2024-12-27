@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { CartState, CartItem } from "@/types/cart";
+// import { loadState } from "../middleware/localStorage";
+
+// const savedState = typeof window !== "undefined" ? loadState() : null;
 
 const initialState: CartState = {
   items: [],
@@ -13,14 +16,14 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Omit<CartItem, "quantity">>) => {
+    addToCart: (state, action: PayloadAction<CartItem>) => {
       const existingItem = state.items.find(
         (item) => item.id === action.payload.id,
       );
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += action.payload.quantity;
       } else {
-        state.items.push({ ...action.payload, quantity: 1 });
+        state.items.push(action.payload);
       }
     },
     removeFromCart: (state, action: PayloadAction<number>) => {
@@ -37,7 +40,6 @@ const cartSlice = createSlice({
     },
     applyPromoCode: (state, action: PayloadAction<string>) => {
       state.promoCode = action.payload;
-      // Example discount calculation
       state.discount = state.items.reduce(
         (acc, item) =>
           acc + (item.price * item.quantity * item.discountPercentage) / 100,

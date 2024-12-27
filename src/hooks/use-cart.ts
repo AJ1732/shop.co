@@ -1,4 +1,3 @@
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   selectCartItems,
   selectCartTotal,
@@ -10,6 +9,7 @@ import {
   updateQuantity,
   applyPromoCode,
 } from "@/store/features/cart.slice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import type { CartItem } from "@/types/cart";
 
 export const useCart = () => {
@@ -26,7 +26,8 @@ export const useCart = () => {
     subtotal,
     discount,
     deliveryFee,
-    addItem: (item: Omit<CartItem, "quantity">) => dispatch(addToCart(item)),
+    addItem: (item: Omit<CartItem, "quantity">, quantity: number) => 
+      dispatch(addToCart({ ...item, quantity })),
     removeItem: (id: number) => dispatch(removeFromCart(id)),
     updateItemQuantity: (id: number, quantity: number) =>
       dispatch(updateQuantity({ id, quantity })),

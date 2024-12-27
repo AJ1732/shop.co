@@ -11,7 +11,8 @@ interface InfoDisplayProps {
 
 const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
-  const { addItem } = useCart();
+  const {items, addItem } = useCart();
+  console.log(items);
 
   const handleQuantityChange = (change: number) => {
     const newQuantity = quantity + change;
@@ -28,8 +29,8 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
       category: product.category,
       thumbnail: product.thumbnail,
       discountPercentage: product.discountPercentage,
-      // quantity,
-    });
+    },quantity,
+  );
     setQuantity(1); // Reset quantity after adding
   };
 

@@ -6,7 +6,6 @@ const CartSection = () => {
   const { items, removeItem, updateItemQuantity } = useCart();
   console.log(items);
   
-
   if (!items.length) {
     return (
       <div className="flex h-40 items-center justify-center rounded-[1.25rem] border border-black/10 px-4 lg:px-6">
