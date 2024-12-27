@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { useProductById } from "@/hooks/use-products";
+import { useProducts } from "@/hooks/use-products";
 import {
   ProductDisplaySection,
   ProductTabSection,
@@ -13,7 +13,21 @@ import {
 
 const ShopIdPage = () => {
   const { shopId } = useParams();
-  const { product, isLoading, isError } = useProductById({ id: shopId });
+  const { product, isLoading, isError } = useProducts({
+    id: Array.isArray(shopId) ? shopId[0] : shopId,
+    // select: [
+    //   "id",
+    //   "title",
+    //   "price",
+    //   "description",
+    //   "category",
+    //   "thumbnail",
+    //   "images",
+    //   "rating",
+    //   "discountPercentage",
+    //   "tags",
+    // ],
+  });
 
   if (isLoading)
     return (

@@ -40,11 +40,6 @@ interface SearchParams {
   query: string;
 }
 
-interface SortParams {
-  sortBy?: keyof Product;
-  order?: "asc" | "desc";
-}
-
 export const productEndpoints = {
   async getProducts(params?: GetProductsParams): Promise<ProductsResponse> {
     try {

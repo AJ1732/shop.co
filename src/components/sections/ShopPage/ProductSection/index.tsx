@@ -18,15 +18,15 @@ const ProductSection = () => {
     category: selectedCategory,
     limit: 10,
     skip: (page - 1) * 10,
-    select: [
-      "id",
-      "title",
-      "price",
-      "discountPercentage",
-      "rating",
-      "thumbnail",
-      "tags",
-    ],
+    // select: [
+    //   "id",
+    //   "title",
+    //   "price",
+    //   "discountPercentage",
+    //   "rating",
+    //   "thumbnail",
+    //   "tags",
+    // ],
   });
 
   const handlePageChange = (newPage: number) => {

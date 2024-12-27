@@ -12,35 +12,47 @@ import {
 import type { Product } from "@/types/products";
 
 interface GetProductsParams {
+  id?: string | number;
   category?: string;
   query?: string;
   limit?: number;
   skip?: number;
   select?: string[];
   sortBy?: keyof Product;
-  order?: 'asc' | 'desc';
+  order?: "asc" | "desc";
 }
 
 export const useProducts = (params?: GetProductsParams) => {
   const dispatch = useAppDispatch();
-  const { items, status, error, total } = useAppSelector((state) => state.products);
+  const { items, status, error, total } = useAppSelector(
+    (state) => state.products,
+  );
 
   useEffect(() => {
-    if (status === "idle" || params) {
+    if (params?.id) {
+      dispatch(
+        fetchProductById({
+          id: params.id,
+          select: params.select,
+        }),
+      );
+    } else if (status === "idle" || params) {
       dispatch(fetchProducts(params));
     }
   }, [
     dispatch,
+    params?.id,
     params?.category,
     params?.query,
     params?.limit,
     params?.skip,
-    params?.select?.join(','),
+    params?.select?.join(","),
     params?.sortBy,
-    params?.order
+    params?.order,
   ]);
 
   return {
+    product: params?.id ? items[0] : undefined,
     products: items,
     total,
     isLoading: status === "loading" || status === "idle",
@@ -87,7 +99,9 @@ export const useProductsByCategory = (params: {
   skip?: number;
 }) => {
   const dispatch = useAppDispatch();
-  const { items, status, error, total } = useAppSelector((state) => state.products);
+  const { items, status, error, total } = useAppSelector(
+    (state) => state.products,
+  );
 
   useEffect(() => {
     dispatch(fetchProductsByCategory(params));
