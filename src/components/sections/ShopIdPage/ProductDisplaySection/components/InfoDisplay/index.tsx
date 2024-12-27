@@ -11,27 +11,37 @@ interface InfoDisplayProps {
 
 const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
-  const {items, addItem } = useCart();
-  console.log(items);
+  const { items, addItem, updateItemQuantity } = useCart();
+
+  const cartItem = items.find((item) => item.id === product.id);
+  const currentQuantity = cartItem?.quantity || quantity;
+
+  console.log(currentQuantity);
 
   const handleQuantityChange = (change: number) => {
-    const newQuantity = quantity + change;
+    const newQuantity = currentQuantity + change;
     if (newQuantity > 0) {
-      setQuantity(newQuantity);
+      if (cartItem) {
+        updateItemQuantity(product.id, newQuantity);
+      } else {
+        setQuantity(newQuantity);
+      }
     }
   };
 
   const handleAddToCart = () => {
-    addItem({
-      id: product.id,
-      title: product.title,
-      price: product.price,
-      category: product.category,
-      thumbnail: product.thumbnail,
-      discountPercentage: product.discountPercentage,
-    },quantity,
-  );
-    setQuantity(1); // Reset quantity after adding
+    addItem(
+      {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        category: product.category,
+        thumbnail: product.thumbnail,
+        discountPercentage: product.discountPercentage,
+      },
+      currentQuantity,
+    );
+    setQuantity(1);
   };
 
   return (
@@ -68,7 +78,7 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
       </div>
 
       <div className="flex items-center justify-between gap-4 py-6">
-        <div className="flex h-ful items-center justify-center gap-6 rounded-full bg-shade-200 px-4 py-4 font-medium lg:gap-8 lg:px-5 lg:py-4">
+        <div className="h-ful flex items-center justify-center gap-6 rounded-full bg-shade-200 px-4 py-4 font-medium lg:gap-8 lg:px-5 lg:py-4">
           <button
             type="button"
             onClick={() => handleQuantityChange(-1)}
@@ -77,11 +87,16 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
             <Minus className="size-6" />
           </button>
 
-          <span>{quantity}</span>
+          <span>{currentQuantity}</span>
 
           <button
             type="button"
-            onClick={() => handleQuantityChange(1)}
+            onClick={() => {
+              if (currentQuantity === 1) {
+                handleAddToCart();
+              }
+              handleQuantityChange(1);
+            }}
             className="active:scale-90"
           >
             <Plus className="size-6" />
@@ -95,4 +110,5 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
     </div>
   );
 };
+
 export default InfoDisplay;
