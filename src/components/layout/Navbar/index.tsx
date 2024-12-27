@@ -80,7 +80,7 @@ const Navbar = () => {
         />
 
         <nav className="z-10 h-fit rounded-2xl bg-black px-8 py-10 text-white">
-          <Navigation />
+          <Navigation onClose={()=>setOpenNav(false)} />
         </nav>
       </div>
     </header>

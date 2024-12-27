@@ -93,13 +93,14 @@ const components: {
 
 interface NavigationProps {
   className?: string;
+  onClose?: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ className }) => {
+const Navigation: React.FC<NavigationProps> = ({ className, onClose }) => {
   return (
     <NavigationMenu className={className}>
       <NavigationMenuList>
-        <NavigationMenuItem>
+        <NavigationMenuItem onClick={onClose}>
           <Link href="/shop" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               shop
@@ -117,6 +118,7 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
                   title={component.title}
                   // href={component.href}
                   categories={component.categories}
+                  onClick={onClose}
                 >
                   {component.description}
                 </ListItem>
