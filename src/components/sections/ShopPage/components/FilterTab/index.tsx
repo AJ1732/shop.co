@@ -9,34 +9,8 @@ import {
 } from "@/components/ui/accordion";
 import { ButtonLink } from "@/components";
 import { useFilter } from "@/provider/filter-context";
+import { categories } from "@/constants";
 import { cn } from "@/lib/utils";
-
-const categories = [
-  "beauty",
-  "fragrances",
-  "furniture",
-  "groceries",
-  "home-decoration",
-  "kitchen-accessories",
-  "laptops",
-  "mens-shirts",
-  "mens-shoes",
-  "mens-watches",
-  "mobile-accessories",
-  "motorcycle",
-  "skin-care",
-  "smartphones",
-  "sports-accessories",
-  "sunglasses",
-  "tablets",
-  "tops",
-  "vehicle",
-  "womens-bags",
-  "womens-dresses",
-  "womens-jewellery",
-  "womens-shoes",
-  "womens-watches",
-];
 
 const FilterTab = () => {
   const { selectedCategory, setSelectedCategory } = useFilter();
