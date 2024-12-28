@@ -6,8 +6,9 @@ import {
   ProductCardSkeleton,
   ProductPaginationSkeleton,
   ProductSectionHeaderSkeleton,
+  ProductPagination
 } from "@/components";
-import { FilterDrawer, ProductPagination } from "../components";
+import { FilterDrawer  } from "../components";
 import { useFilter } from "@/provider/filter-context";
 import { useProducts } from "@/hooks/use-products";
 
