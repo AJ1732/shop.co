@@ -22,13 +22,13 @@ const HeroSection = () => {
         <div className="max-w-[38rem] space-y-5 lg:space-y-12">
           <div className="space-y-5 lg:space-y-8">
             <h2 className="font-integral text-4xl leading-[2.125rem] text-black max-md:max-w-[22.5rem] md:text-5xl lg:text-[4rem] lg:leading-[4rem]">
-              FIND CLOTHES THAT MATCHES YOUR STYLE
+              FIND STUFF THAT YOU NEED
             </h2>
 
             <p className="text-sm text-black/60 max-md:max-w-[22.5rem] md:text-base">
-              Browse through our diverse range of meticulously crafted garments,
-              designed to bring out your individuality and cater to your sense
-              of style.
+              Browse through our diverse range of meticulously crafted products,
+              thoughtfully designed to celebrate your individuality and cater to
+              your unique taste and lifestyle.
             </p>
 
             <ButtonLink link="/shop" className="w-full px-14 py-4 md:w-fit">
