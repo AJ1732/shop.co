@@ -67,21 +67,34 @@ const Navbar = () => {
       </nav>
 
       {/* MOBILE NAVIGATION */}
-      <div
-        className={cn(
-          "full-width content-grid absolute top-full min-h-[calc(100dvh-4rem)] w-full lg:!hidden",
-          !openNav && "!hidden",
-        )}
-      >
-        <div
-          onClick={() => setOpenNav((prev) => !prev)}
-          className="full-width absolute inset-0 size-full bg-shade-100/50 backdrop-blur-sm"
-        />
+      <AnimatePresence>
+        {openNav && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="full-width content-grid absolute top-full min-h-[calc(100dvh-4rem)] w-full lg:!hidden"
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpenNav(false)}
+              className="full-width absolute inset-0 size-full bg-shade-100/50 backdrop-blur-sm"
+            />
 
-        <nav className="z-10 h-fit rounded-2xl bg-black px-8 py-10 text-white">
-          <Navigation onClose={() => setOpenNav(false)} />
-        </nav>
-      </div>
+            <motion.nav
+              initial={{ y: 0 }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="z-10 h-fit rounded-2xl bg-black px-8 py-10 text-white"
+            >
+              <Navigation onClose={() => setOpenNav(false)} />
+            </motion.nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* MOBILE SEARCH CONTAINER */}
       <AnimatePresence>
