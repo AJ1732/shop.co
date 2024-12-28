@@ -1,38 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import {
   ProductCard,
   ProductCardSkeleton,
   ProductPaginationSkeleton,
   ProductSectionHeaderSkeleton,
-  ProductPagination
+  ProductPagination,
 } from "@/components";
-import { FilterDrawer  } from "../components";
+import { FilterDrawer } from "../components";
 import { useFilter } from "@/provider/filter-context";
 import { useProducts } from "@/hooks/use-products";
 
-const ProductSection = () => {
-  const [page, setPage] = useState(1);
+interface ProductSectionProps {
+  initialPage: number;
+}
+
+const ProductSection: React.FC<ProductSectionProps> = ({ initialPage }) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const [page, setPage] = useState(initialPage);
   const { selectedCategory } = useFilter();
+
   const { products, isError, isLoading, total, error } = useProducts({
     category: selectedCategory,
     limit: 10,
     skip: (page - 1) * 10,
-    // select: [
-    //   "id",
-    //   "title",
-    //   "price",
-    //   "discountPercentage",
-    //   "rating",
-    //   "thumbnail",
-    //   "tags",
-    // ],
   });
 
   const handlePageChange = (newPage: number) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", newPage.toString());
+    if (selectedCategory) {
+      params.set("category", selectedCategory);
+    }
+    router.push(`${pathname}?${params.toString()}`);
     setPage(newPage);
   };
+
+  useEffect(() => {
+    setPage(initialPage);
+  }, [initialPage]);
 
   if (isLoading) {
     return (

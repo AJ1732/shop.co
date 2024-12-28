@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import {
   Accordion,
   AccordionContent,
@@ -13,7 +14,19 @@ import { categories } from "@/constants";
 import { cn } from "@/lib/utils";
 
 const FilterTab = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const { selectedCategory, setSelectedCategory } = useFilter();
+
+  const handleClearFilter = () => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("category");
+    params.set("page", "1");
+    router.push(`${pathname}?${params.toString()}`);
+    setSelectedCategory(undefined);
+  };
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category === selectedCategory ? undefined : category);
@@ -45,7 +58,7 @@ const FilterTab = () => {
       </Accordion>
 
       <ButtonLink
-        onClick={() => setSelectedCategory(undefined)}
+        onClick={handleClearFilter}
         disabled={!selectedCategory}
         className="w-full py-4 text-sm font-medium disabled:opacity-50"
       >
