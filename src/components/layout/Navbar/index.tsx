@@ -8,8 +8,7 @@ import {
   SearchIcon,
   ShoppingCart,
 } from "lucide-react";
-import { InputField } from "@/components";
-import { Navigation } from "./components";
+import { Navigation, SearchField } from "./components";
 import { useCart } from "@/hooks/use-cart";
 import { cn } from "@/lib/utils";
 
@@ -40,14 +39,7 @@ const Navbar = () => {
           <Navigation className="max-lg:hidden" />
         </div>
 
-        <InputField
-          startIcon={<SearchIcon />}
-          placeholder="Search for products..."
-          className="ml-auto min-w-[36rem] bg-shade-200 max-lg:hidden"
-          iconProps={{
-            className: "max-lg:hidden stroke-black/40",
-          }}
-        />
+        <SearchField />
 
         <div className="flex items-center justify-center gap-4 *:size-6">
           <div className="lg:hidden">
@@ -80,7 +72,7 @@ const Navbar = () => {
         />
 
         <nav className="z-10 h-fit rounded-2xl bg-black px-8 py-10 text-white">
-          <Navigation onClose={()=>setOpenNav(false)} />
+          <Navigation onClose={() => setOpenNav(false)} />
         </nav>
       </div>
     </header>
