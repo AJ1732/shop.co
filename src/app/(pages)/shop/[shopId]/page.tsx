@@ -15,18 +15,6 @@ const ShopIdPage = () => {
   const { shopId } = useParams();
   const { product, isLoading, isError } = useProducts({
     id: Array.isArray(shopId) ? shopId[0] : shopId,
-    // select: [
-    //   "id",
-    //   "title",
-    //   "price",
-    //   "description",
-    //   "category",
-    //   "thumbnail",
-    //   "images",
-    //   "rating",
-    //   "discountPercentage",
-    //   "tags",
-    // ],
   });
 
   if (isLoading)

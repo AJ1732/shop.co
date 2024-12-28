@@ -77,14 +77,14 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
         </ul>
       </div>
 
-      <div className="flex items-center justify-between gap-4 py-6">
-        <div className="h-ful flex items-center justify-center gap-6 rounded-full bg-shade-200 px-4 py-4 font-medium lg:gap-8 lg:px-5 lg:py-4">
+      <div className="flex items-center justify-between gap-3 py-6 md:gap-4">
+        <div className="flex items-center justify-center gap-6 rounded-full bg-shade-200 px-4 py-3.5 font-medium md:py-4 lg:gap-8 lg:px-5 lg:py-4">
           <button
             type="button"
             onClick={() => handleQuantityChange(-1)}
             className="active:scale-90"
           >
-            <Minus className="size-6" />
+            <Minus className="size-4 md:size-6" />
           </button>
 
           <span>{currentQuantity}</span>
@@ -99,11 +99,14 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
             }}
             className="active:scale-90"
           >
-            <Plus className="size-6" />
+            <Plus className="size-4 md:size-6" />
           </button>
         </div>
 
-        <ButtonLink onClick={handleAddToCart} className="size-full">
+        <ButtonLink
+          onClick={handleAddToCart}
+          className="size-full max-md:py-3.5"
+        >
           Add to Cart
         </ButtonLink>
       </div>
