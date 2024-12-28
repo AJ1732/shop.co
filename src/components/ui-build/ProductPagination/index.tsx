@@ -9,6 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { cn } from "@/lib/utils";
 
 interface ProductPaginationProps {
   total: number;
@@ -135,6 +136,10 @@ const ProductPagination = ({
               e.preventDefault();
               if (currentPage > 1) onPageChange(currentPage - 1);
             }}
+            className={cn(
+              currentPage <= 1 &&
+                "pointer-events-none cursor-not-allowed opacity-50",
+            )}
           />
         </PaginationItem>
 
@@ -149,6 +154,10 @@ const ProductPagination = ({
               e.preventDefault();
               if (currentPage < totalPages) onPageChange(currentPage + 1);
             }}
+            className={cn(
+              currentPage >= totalPages &&
+                "pointer-events-none cursor-not-allowed opacity-50",
+            )}
           />
         </PaginationItem>
       </PaginationContent>
