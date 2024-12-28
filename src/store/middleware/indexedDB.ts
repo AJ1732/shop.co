@@ -1,44 +1,44 @@
 // import { Middleware, UnknownAction, MiddlewareAPI, Dispatch } from '@reduxjs/toolkit';
-import { openDB, IDBPDatabase } from 'idb';
+// import { openDB, IDBPDatabase } from 'idb';
 // import type { RootState } from '@/store';
-import type { CartState } from '@/types/cart';
+// import type { CartState } from '@/types/cart';
 
-interface StoreSchema {
-  cart: {
-    key: string;
-    value: CartState;
-  };
-}
+// interface StoreSchema {
+//   cart: {
+//     key: string;
+//     value: CartState;
+//   };
+// }
 
-const DB_NAME = 'shopco-store';
-const STORE_NAME = 'cart';
-const DB_VERSION = 1;
+// const DB_NAME = 'shopco-store';
+// const STORE_NAME = 'cart';
+// const DB_VERSION = 1;
 
-let db: IDBPDatabase<StoreSchema> | null = null;
+// let db: IDBPDatabase<StoreSchema> | null = null;
 
-const initDB = async () => {
-  if (!db) {
-    db = await openDB<StoreSchema>(DB_NAME, DB_VERSION, {
-      upgrade(db) {
-        if (!db.objectStoreNames.contains(STORE_NAME)) {
-          db.createObjectStore(STORE_NAME);
-        }
-      },
-    });
-  }
-  return db;
-};
+// const initDB = async () => {
+//   if (!db) {
+//     db = await openDB<StoreSchema>(DB_NAME, DB_VERSION, {
+//       upgrade(db) {
+//         if (!db.objectStoreNames.contains(STORE_NAME)) {
+//           db.createObjectStore(STORE_NAME);
+//         }
+//       },
+//     });
+//   }
+//   return db;
+// };
 
-export const loadCartState = async (): Promise<CartState | undefined> => {
-  try {
-    const db = await initDB();
-    const state = await db.get(STORE_NAME, 'cartState');
-    return state || undefined;
-  } catch (err) {
-    console.error('Failed to load cart state:', err);
-    return undefined;
-  }
-};
+// export const loadCartState = async (): Promise<CartState | undefined> => {
+//   try {
+//     const db = await initDB();
+//     const state = await db.get(STORE_NAME, 'cartState');
+//     return state || undefined;
+//   } catch (err) {
+//     console.error('Failed to load cart state:', err);
+//     return undefined;
+//   }
+// };
 
 // export const indexedDBMiddleware: Middleware = 
 //   (store: MiddlewareAPI<Dispatch, RootState>) => 
