@@ -42,7 +42,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
         <h1 className="font-integral text-[2rem] capitalize md:text-4xl lg:text-[3rem]">
           {category.split("-").join(" ")}
         </h1>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
           {[1, 2, 3, 4].map((item) => (
             <ProductCardSkeleton key={item} />
           ))}
