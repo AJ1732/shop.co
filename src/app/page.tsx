@@ -1,13 +1,10 @@
-import {
-  HeroSection,
-  // ShopDisplaySection,
-} from "@/components/sections/Homepage";
+import { HeroSection, NoticeSection } from "@/components/sections/Homepage";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      {/* <ShopDisplaySection /> */}
+      <NoticeSection />
     </>
   );
 }
