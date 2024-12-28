@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   AlignLeft,
   CircleUserRound,
@@ -14,6 +15,7 @@ import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [openNav, setOpenNav] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const { items } = useCart();
 
   return (
@@ -39,12 +41,17 @@ const Navbar = () => {
           <Navigation className="max-lg:hidden" />
         </div>
 
-        <SearchField />
+        <div className="max-lg:hidden">
+          <SearchField />
+        </div>
 
         <div className="flex items-center justify-center gap-4 *:size-6">
-          <div className="lg:hidden">
+          <button
+            onClick={() => setShowMobileSearch((prev) => !prev)}
+            className="lg:hidden"
+          >
             <SearchIcon className="size-6" />
-          </div>
+          </button>
 
           <Link href={"/cart"} className="relative">
             <ShoppingCart />
@@ -75,6 +82,23 @@ const Navbar = () => {
           <Navigation onClose={() => setOpenNav(false)} />
         </nav>
       </div>
+
+      {/* MOBILE SEARCH CONTAINER */}
+      <AnimatePresence>
+        {showMobileSearch && (
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -20, opacity: 0 }}
+            transition={{ duration: 0.1, ease: "easeInOut" }}
+            className="border-b border-black/10 lg:hidden"
+          >
+            <div className="p-3">
+              <SearchField />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
