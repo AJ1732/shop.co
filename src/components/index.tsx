@@ -19,6 +19,7 @@ export { default as CartCard } from "./ui-build/Card/CartCard";
 export { default as OrderSummaryCard } from "./ui-build/Card/OrderSummaryCard";
 export { default as ProductCard } from "./ui-build/Card/ProductCard";
 export { default as ReviewCard } from "./ui-build/Card/ReviewCard";
+export { default as SearchCard } from "./ui-build/Card/SearchCard";
 
 // SKELETONS COMPONENTS
 export { default as ProductCardSkeleton } from "./ui-build/Skeletons/ProductCardSkeleton";
