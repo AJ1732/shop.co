@@ -55,7 +55,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
 
   return (
     <div className="flex h-full flex-col gap-6 pb-28">
-      <header className="flex items-center justify-between">
+      <header className="flex items-center justify-between max-md:flex-col max-md:items-start">
         <h1 className="font-integral text-[2rem] capitalize md:text-4xl lg:text-[3rem]">
           {category.split("-").join(" ")}
         </h1>
@@ -64,7 +64,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
         </p>
       </header>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
           <ProductCard key={product.id} {...product} />
         ))}
