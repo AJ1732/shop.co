@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productsReducer from "./features/products.slice";
 import cartReducer from "./features/cart.slice";
+import productsReducer from "./features/products.slice";
+import searchReducer from "./features/search.slice";
 // import { localStorageMiddleware } from "./middleware/localStorage";
 
 export const store = configureStore({
   reducer: {
-    products: productsReducer,
     cart: cartReducer,
+    products: productsReducer,
+    search: searchReducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware().concat(localStorageMiddleware),

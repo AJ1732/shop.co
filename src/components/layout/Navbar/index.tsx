@@ -41,7 +41,7 @@ const Navbar = () => {
           <Navigation className="max-lg:hidden" />
         </div>
 
-        <div className="max-lg:hidden">
+        <div className="w-full max-lg:hidden">
           <SearchField />
         </div>
 
