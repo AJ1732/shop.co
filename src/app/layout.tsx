@@ -8,17 +8,17 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "shop.co",
-  description: "Website displaying posts from a free and reliable fake API",
+  title: "SHOP.CO",
+  description: "Website displaying posts from dummyjson",
   openGraph: {
-    title: "Rsa Stores",
+    title: "SHOP.CO",
     type: "website",
     locale: "en_US",
     siteName: "shop.co",
-    url: "https://1732-rsa-stores.vercel.app/",
-    description: "Website displaying posts from a free and reliable fake API",
+    url: "https://1732-shopco.netlify.app/",
+    description: "Website displaying store items from dummyjson",
     images:
-      "https://aj1732.github.io/rsa-stores/public/favicon_io/android-chrome-192x192.png",
+      "https://aj1732.github.io/shop.co/public/favicon_io/android-chrome-192x192.png",
   },
   icons: {
     icon: ["/favicon_io/favicon.ico?v=4"],
