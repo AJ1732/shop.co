@@ -1,5 +1,5 @@
 # Shop.co - E-commerce Demo Application
-![Pharmelites Graduating Class of 2024 Yearbook - Google Chrome 12_31_2024 1_55_57 AM](https://github.com/user-attachments/assets/2a81fdf6-351f-49e6-b1aa-631459f010e
+![Pharmelites Graduating Class of 2024 Yearbook - Google Chrome 12_31_2024 1_55_57 AM](https://github.com/user-attachments/assets/2a81fdf6-351f-49e6-b1aa-631459f010e)
 ![Pharmelites Graduating Class of 2024 Yearbook - Google Chrome 12_31_2024 1_56_43 AM](https://github.com/user-attachments/assets/1cd6f00e-4161-4f9a-bfef-dc8e9edab1c7)
 a)
 ![Pharmelites Graduating Class of 2024 Yearbook - Google Chrome 12_31_2024 1_56_14 AM](https://github.com/user-attachments/assets/dc7b592b-d620-40eb-b909-b3db527fd762)
