@@ -40,12 +40,12 @@
 //   }
 // };
 
-// export const indexedDBMiddleware: Middleware = 
-//   (store: MiddlewareAPI<Dispatch, RootState>) => 
-//   (next: Dispatch) => 
+// export const indexedDBMiddleware: Middleware =
+//   (store: MiddlewareAPI<Dispatch, RootState>) =>
+//   (next: Dispatch) =>
 //   async (action: UnknownAction) => {
 //     const result = next(action);
-    
+
 //     if (typeof action.type === 'string' && action.type.startsWith('cart/')) {
 //       try {
 //         const db = await initDB();
@@ -55,6 +55,6 @@
 //         console.error('Failed to save cart state:', err);
 //       }
 //     }
-    
+
 //     return result;
 //   };

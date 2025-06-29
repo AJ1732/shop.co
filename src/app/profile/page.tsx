@@ -15,7 +15,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
 const ProfilePage = () => {
   return (
     <div className="py-10">
-      <div className="divide-y divide-black/10 rounded-2xl border border-black/10 px-4 md:px-6 py-4">
+      <div className="divide-y divide-black/10 rounded-2xl border border-black/10 px-4 py-4 md:px-6">
         <ProfileSection className="flex justify-between gap-4 pt-0 max-md:flex-col md:gap-12">
           <div className="space-y-4 pt-4">
             <div className="aspect-square w-20 rounded-full border bg-black/10"></div>

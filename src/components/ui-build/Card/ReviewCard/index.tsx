@@ -31,7 +31,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   });
 
   return (
-    <Card className="rounded-[1.25rem] bottom-px border-black/10">
+    <Card className="bottom-px rounded-[1.25rem] border-black/10">
       <CardHeader className="space-y-0 pb-4 pt-2">
         <StarRating rating={rating} rate={false} />
 

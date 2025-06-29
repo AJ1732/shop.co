@@ -18,14 +18,14 @@ const initialState: SearchState = {
   items: [],
   status: "idle",
   error: null,
-  total: 0
+  total: 0,
 };
 
 export const searchProducts = createAsyncThunk(
   "search/searchProducts",
   async (params: SearchParams) => {
     return await productEndpoints.searchProducts(params);
-  }
+  },
 );
 
 const searchSlice = createSlice({
@@ -35,7 +35,7 @@ const searchSlice = createSlice({
     clearSearch: (state) => {
       state.items = [];
       state.total = 0;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -51,7 +51,7 @@ const searchSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message || "Failed to search products";
       });
-  }
+  },
 });
 
 export const { clearSearch } = searchSlice.actions;

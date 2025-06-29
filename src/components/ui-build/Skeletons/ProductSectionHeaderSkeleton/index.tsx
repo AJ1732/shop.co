@@ -12,7 +12,6 @@ const ProductSectionHeaderSkeleton = () => {
           <Skeleton className="size-8 rounded-full" />
         </div>
       </div>
-      
     </div>
   );
 };

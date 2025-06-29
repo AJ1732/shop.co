@@ -65,7 +65,7 @@ const InputField = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            "border-input bg-background text-zinc-900 placeholder:text-black/40 ring-offset-background placeholder:text-muted-foreground flex min-h-10 w-full rounded-full border px-8 py-3 text-sm file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-black focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 lg:text-base",
+            "border-input bg-background ring-offset-background placeholder:text-muted-foreground flex min-h-10 w-full rounded-full border px-8 py-3 text-sm text-zinc-900 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-black/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-black focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 lg:text-base",
             startIcon ? "pl-12" : "",
             endIcon ? "pr-12" : "",
             className,

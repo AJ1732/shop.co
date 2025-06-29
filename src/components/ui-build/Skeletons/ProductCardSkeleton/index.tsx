@@ -8,7 +8,9 @@ interface ProductCardSkeletonProps {
 
 const ProductCardSkeleton = ({ className }: ProductCardSkeletonProps) => {
   return (
-    <Card className={cn("relative w-full border-0 shadow-none *:p-0", className)}>
+    <Card
+      className={cn("relative w-full border-0 shadow-none *:p-0", className)}
+    >
       <Skeleton className="mb-4 aspect-[86/87] w-full rounded-[1.25rem]" />
 
       <CardHeader>

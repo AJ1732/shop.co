@@ -10,7 +10,7 @@ export interface CartItem {
 
 export interface CartState {
   items: CartItem[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   promoCode?: string;
   discount: number;

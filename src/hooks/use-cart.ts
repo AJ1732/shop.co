@@ -26,7 +26,7 @@ export const useCart = () => {
     subtotal,
     discount,
     deliveryFee,
-    addItem: (item: Omit<CartItem, "quantity">, quantity: number) => 
+    addItem: (item: Omit<CartItem, "quantity">, quantity: number) =>
       dispatch(addToCart({ ...item, quantity })),
     removeItem: (id: number) => dispatch(removeFromCart(id)),
     updateItemQuantity: (id: number, quantity: number) =>

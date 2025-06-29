@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { searchProducts, clearSearch } from "@/store/features/search.slice";
@@ -8,9 +8,14 @@ interface UseSearchProductsParams {
   limit?: number;
 }
 
-export const useSearchProducts = ({ query, limit }: UseSearchProductsParams) => {
+export const useSearchProducts = ({
+  query,
+  limit,
+}: UseSearchProductsParams) => {
   const dispatch = useAppDispatch();
-  const { items, status, error, total } = useAppSelector((state) => state.search);
+  const { items, status, error, total } = useAppSelector(
+    (state) => state.search,
+  );
 
   useEffect(() => {
     if (query) {

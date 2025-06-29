@@ -9,9 +9,7 @@ a)
 
 ![Pharmelites Graduating Class of 2024 Yearbook - Google Chrome 12_31_2024 1_57_04 AM](https://github.com/user-attachments/assets/58b991a7-bd5b-4403-993e-1db6e1465048)
 
-
 A modern, responsive e-commerce application built with Next.js 14 and TypeScript, demonstrating React best practices, modern design patterns, and efficient state management.
-
 
 ## 🌟 Key Features
 
@@ -160,9 +158,9 @@ This project implements the [E-commerce Website Template](https://www.figma.com/
 
 - Implement checkout process
 - Implement user profiles
-<!-- - Add authentication system -->
-<!-- - Enhance search with filters -->
-<!-- - Add wishlist functionality -->
+  <!-- - Add authentication system -->
+  <!-- - Enhance search with filters -->
+  <!-- - Add wishlist functionality -->
 
 <!-- ## 📄 License
 

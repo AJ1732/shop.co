@@ -14,11 +14,11 @@ export type CartCardProps = Omit<CardProps, "footer"> & {
 };
 export type ProductCardProps = Omit<
   CardProps,
-   "description" | "content" | "footer"
+  "description" | "content" | "footer"
 > & {
   id: number;
   price: number;
   discountPercentage: number;
   thumbnail: string;
-  rating: number
+  rating: number;
 };

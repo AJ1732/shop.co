@@ -17,9 +17,7 @@ interface ProductDetailsTabProps {
   product: Product;
 }
 
-const ProductDetailsTab: React.FC<ProductDetailsTabProps> = ({
-  product,
-}) => {
+const ProductDetailsTab: React.FC<ProductDetailsTabProps> = ({ product }) => {
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
       <div className="space-y-1">

@@ -16,7 +16,7 @@ interface GetProductsParams {
   skip?: number;
   select?: string[];
   sortBy?: keyof Product;
-  order?: 'asc' | 'desc';
+  order?: "asc" | "desc";
 }
 interface GetProductByIdParams {
   id: number | string;
@@ -43,19 +43,19 @@ interface SearchParams {
 export const productEndpoints = {
   async getProducts(params?: GetProductsParams): Promise<ProductsResponse> {
     try {
-      let endpoint = 'products';
+      let endpoint = "products";
 
       if (params?.category) {
         endpoint = `products/category/${params.category}`;
       } else if (params?.query) {
-        endpoint = 'products/search';
+        endpoint = "products/search";
       }
 
       const queryParams = {
         ...(params?.query && { q: params.query }),
         ...(params?.limit && { limit: params.limit }),
         ...(params?.skip && { skip: params.skip }),
-        ...(params?.select && { select: params.select.join(',') }),
+        ...(params?.select && { select: params.select.join(",") }),
         ...(params?.sortBy && { sortBy: params.sortBy }),
         ...(params?.order && { order: params.order }),
       };
@@ -68,10 +68,10 @@ export const productEndpoints = {
     } catch (error) {
       if (axios.isAxiosError(error)) {
         throw new Error(
-          error.response?.data?.message || 'Failed to fetch products'
+          error.response?.data?.message || "Failed to fetch products",
         );
       }
-      throw new Error('Failed to fetch products');
+      throw new Error("Failed to fetch products");
     }
   },
 
@@ -94,20 +94,29 @@ export const productEndpoints = {
     }
   },
 
-  async getProductsByCategory({ category, select, limit, skip }: CategoryParams): Promise<ProductsResponse> {
+  async getProductsByCategory({
+    category,
+    select,
+    limit,
+    skip,
+  }: CategoryParams): Promise<ProductsResponse> {
     try {
-      const { data } = await apiClient.get<ProductsResponse>(`products/category/${category}`, {
-        params: {
-          ...(select && { select: select.join(",") }),
-          ...(limit && { limit }),
-          ...(skip && { skip }),
+      const { data } = await apiClient.get<ProductsResponse>(
+        `products/category/${category}`,
+        {
+          params: {
+            ...(select && { select: select.join(",") }),
+            ...(limit && { limit }),
+            ...(skip && { skip }),
+          },
         },
-      });
+      );
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         throw new Error(
-          error.response?.data?.message || `Failed to fetch products in category ${category}`,
+          error.response?.data?.message ||
+            `Failed to fetch products in category ${category}`,
         );
       }
       throw new Error(`Failed to fetch products in category ${category}`);
