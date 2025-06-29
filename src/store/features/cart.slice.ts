@@ -1,8 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { CartState, CartItem } from "@/types/cart";
-// import { loadState } from "../middleware/localStorage";
-
-// const savedState = typeof window !== "undefined" ? loadState() : null;
 
 const initialState: CartState = {
   items: [],
@@ -21,7 +18,7 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.id,
       );
       if (existingItem) {
-        existingItem.quantity += action.payload.quantity;
+        existingItem.quantity = action.payload.quantity;
       } else {
         state.items.push(action.payload);
       }

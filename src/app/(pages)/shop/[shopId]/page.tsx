@@ -2,14 +2,15 @@
 
 import { useParams } from "next/navigation";
 import { useProducts } from "@/hooks/use-products";
-import {
-  ProductDisplaySection,
-  ProductTabSection,
-} from "@/components/sections/ShopIdPage";
+import { ProductTabSection } from "@/components/sections/ShopIdPage";
 import {
   ProductDisplaySectionSkeleton,
   ProductTabSectionSkeleton,
 } from "@/components";
+import {
+  ImageDisplay,
+  InfoDisplay,
+} from "@/components/sections/ShopIdPage/components";
 
 const ShopIdPage = () => {
   const { shopId } = useParams();
@@ -29,7 +30,10 @@ const ShopIdPage = () => {
 
   return (
     <div className="lg:space-y-6">
-      <ProductDisplaySection product={product} />
+      <div className="grid gap-x-6 max-lg:gap-y-5 lg:grid-cols-[38.125rem_1fr]">
+        <ImageDisplay images={product.images} />
+        <InfoDisplay product={product} />
+      </div>
       <ProductTabSection product={product} />
     </div>
   );

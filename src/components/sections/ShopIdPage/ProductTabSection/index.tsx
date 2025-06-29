@@ -6,12 +6,12 @@ const Loader = () => <div>Loading...</div>;
 
 // LAZY LOAD COMPONENTS
 const ProductDetailsTab = dynamic(
-  () => import("./components").then((mod) => mod.ProductDetailsTab),
+  () => import("../components").then((mod) => mod.ProductDetailsTab),
   { loading: () => <Loader /> },
 );
 
 const RatingRevewsTab = dynamic(
-  () => import("./components").then((mod) => mod.RatingRevewsTab),
+  () => import("../components").then((mod) => mod.RatingRevewsTab),
   { loading: () => <Loader /> },
 );
 

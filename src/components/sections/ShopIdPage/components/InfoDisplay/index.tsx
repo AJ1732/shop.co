@@ -16,8 +16,6 @@ const InfoDisplay: React.FC<InfoDisplayProps> = ({ product }) => {
   const cartItem = items.find((item) => item.id === product.id);
   const currentQuantity = cartItem?.quantity || quantity;
 
-  console.log(currentQuantity);
-
   const handleQuantityChange = (change: number) => {
     const newQuantity = currentQuantity + change;
     if (newQuantity > 0) {
